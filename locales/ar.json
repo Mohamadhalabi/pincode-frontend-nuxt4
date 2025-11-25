@@ -1,0 +1,256 @@
+{
+  "nav.kiaBefore2017": "كيا / هيونداي (قديمة)",
+  "nav.kiaAfter2017": "كيا / هيونداي (جديدة)",
+  "nav.categories": "التصنيفات",
+  "nav.lookups": "استعلامات VIN الخاصة بي",
+  "hero.badge": "حاسبة كود الإيموبلايزر",
+  "hero.headline": "لماذا تختار منصّة أكواد الـ PIN الخاصة بنا؟",
+  "hero.points.easy": "سهلة الاستخدام",
+  "hero.points.updates": "تحديثات مجانية مدى الحياة",
+  "hero.points.free": "وصول إلى خدمات مجانية",
+  "hero.points.noRenewal": "لا رسوم تجديد · التوكينات لا تنتهي صلاحيتها",
+  "hero.points.instant": "حساب فوري على مدار 24/7",
+  "btn.newLookup": "استعلام VIN جديد",
+  "btn.buyTokens": "شراء توكينات",
+  "section.offers.title": "عروض خاصة",
+  "section.offers.subtitle": "خصومات إضافية وهدايا مجانية",
+  "section.calcs.title": "الحاسبات",
+  "section.calcs.subtitle": "الخدمات الأكثر استخدامًا",
+  "section.calcs.browseAll": "استعراض كل الحاسبات",
+  "section.tokens.title": "التوكينات",
+  "section.tokens.subtitle": "لماذا نستخدم التوكينات؟",
+  "tokens.bullets.1": "بعض الخدمات المتقدمة تحتاج إلى توكينات (مثل VIN→PIN لبعض الماركات).",
+  "tokens.bullets.2": "لا حاجة إلى دنغل أو تعريفات.",
+  "tokens.bullets.3": "إرسال فوري عبر البريد الإلكتروني بعد الدفع.",
+  "tokens.bullets.4": "لا توجد رسوم تجديد. التوكينات لا تنتهي صلاحيتها.",
+  "tokens.bestValue": "أفضل قيمة",
+  "tokens.buyNow": "اشترِ الآن",
+  "seo.title": "حاسبة كود الإيموبلايزر — VIN إلى PIN سريع مع باقات توكينات",
+  "seo.desc": "اشترِ التوكينات، نفّذ استعلامات VIN→PIN، واستخدم الحاسبات. خدمات أكواد PIN سريعة مع نتائج فورية وبدون رسوم تجديد.",
+
+  "home": {
+    "categories": "التصنيفات",
+    "tokenPacks": "باقات التوكينات"
+  },
+
+  "btn": {
+    "buyTokens": "شراء توكينات",
+    "addToCart": "أضف إلى السلة"
+  },
+
+  "common": {
+    "price" : "السعر",
+    "quantity" : "الكمية",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "phone": "رقم الهاتف",
+    "go": "اذهب",
+    "prev": "السابق",
+    "next": "التالي",
+    "description": "الوصف",
+    "faq": "الأسئلة الشائعة",
+    "contactUs": "تواصل معنا",
+    "home": "الصفحة الرئيسية",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "message": "الرسالة",
+    "contactPlaceholder": "كيف يمكننا مساعدتك؟",
+    "send": "إرسال",
+    "sending": "جاري الإرسال…",
+    "sentThanks": "شكرًا لك! سنتواصل معك قريبًا.",
+    "noDescription": "لا يوجد وصف متاح.",
+    "noFaq": "لا توجد أسئلة شائعة.",
+    "noImage": "لا توجد صورة متاحة",
+    "language": "اللغة",
+    "continueShopping": "متابعة التسوق",
+    "applying": "جاري التطبيق…",
+    "loading": "جاري التحميل…",
+    "copy": "نسخ",
+    "copied": "تم النسخ",
+    "contact_whatsapp": "تواصل معنا عبر واتساب"
+  },
+
+  "product": {
+    "category": "التصنيف",
+    "related": "منتجات مرتبطة",
+    "noRelated": "لا توجد منتجات مرتبطة"
+  },
+
+  "nav": {
+    "categories": "التصنيفات",
+    "lookups": "استعلامات VIN",
+    "openMenu": "فتح القائمة",
+    "kia_before": "كيا / هيونداي VIN إلى PIN (قبل 2017)",
+    "kia_after": "كيا / هيونداي VIN إلى PIN (ابتداءً من 2017)",
+    "account": "الحساب"
+  },
+
+  "cart": {
+    "loginToCheckout": "سجّل الدخول للمتابعة إلى الدفع",
+    "loginToCheckoutHint": "يجب تسجيل الدخول لإتمام عملية الشراء.",
+    "open": "فتح السلة",
+    "title": "السلة",
+    "empty": "سلتك فارغة.",
+    "unit": "وحدة",
+    "tokens": "توكينات",
+    "decrease": "إنقاص الكمية",
+    "increase": "زيادة الكمية",
+    "remove": "إزالة",
+    "lineTotal": "الإجمالي",
+    "clear": "تفريغ السلة",
+    "product": "المنتج",
+    "price": "السعر",
+    "qty": "الكمية",
+    "actions": "الإجراءات",
+    "clearConfirm": "هل تريد تفريغ السلة بالكامل؟",
+    "summary": "ملخص الطلب",
+    "coupon": "كوبون",
+    "enterCode": "أدخل الكود",
+    "apply": "تطبيق",
+    "applying": "جاري التطبيق…",
+    "couponApplied": "تم تطبيق الكوبون: خصم 10٪",
+    "couponInvalid": "لم يتم التعرف على الكوبون",
+    "subtotal": "المجموع الفرعي",
+    "discount": "الخصم",
+    "tax": "الضريبة التقديرية",
+    "shipping": "الشحن",
+    "calcAtCheckout": "يتم احتسابه عند الدفع",
+    "total": "الإجمالي",
+    "checkout": "المتابعة إلى الدفع",
+    "loginSave": "لديك حساب؟ سجّل الدخول حتى نحفظ سلتك."
+  },
+
+  "checkout": {
+    "copy": "نسخ",
+    "copied": "تم النسخ",
+    "walletCopied": "تم نسخ المحفظة",
+    "title": "إتمام الطلب",
+    "details": "بيانات الفاتورة",
+    "fullName": "الاسم الكامل",
+    "company": "الشركة (اختياري)",
+    "vat": "رقم الضريبة / رقم التعريف الضريبي (اختياري)",
+    "email": "البريد الإلكتروني",
+    "notes": "ملاحظات على الطلب (اختياري)",
+    "notesPlaceholder": "أي ملاحظات خاصة بهذا الطلب…",
+    "placeOrder": "تأكيد الطلب",
+    "placing": "جاري تأكيد الطلب…",
+    "summary": "ملخص الطلب",
+    "info": "سيتم التواصل معك أو إعادة توجيهك لإتمام عملية الدفع بعد تأكيد الطلب.",
+    "success": "تم إنشاء طلبك بنجاح.",
+    "error": "حدث خطأ أثناء إنشاء الطلب.",
+    "emailFromAccount": "يتم أخذ بريدك الإلكتروني من حسابك ولا يمكن تغييره هنا.",
+    "paymentMethod": "طريقة الدفع",
+    "methods": {
+      "paypal": {
+        "title": "PayPal",
+        "desc": "سيتم إنشاء فاتورة في PayPal وإرسالها إلى بريدك الإلكتروني."
+      },
+      "usdt": {
+        "title": "تحويل USDT",
+        "desc": "أرسل USDT إلى محفظتنا ثم أرسل لنا إثبات الدفع على واتساب.",
+        "walletLabel": "عنوان محفظة USDT",
+        "afterPayment": "بعد إرسال USDT، يرجى إرسال إثبات الدفع لنا على واتساب."
+      },
+      "transfer": {
+        "title": "تحويل دولي",
+        "desc": "يمكنك الدفع عبر ويسترن يونيون أو تحويل بنكي دولي. سنرسل لك التفاصيل بعد إنشاء الطلب."
+      }
+    },
+    "acceptTermsHtml": "أوافق على <a href=\"/terms\" class=\"text-orange-600 underline\" target=\"_blank\">الشروط والأحكام</a>.",
+    "successPaypal": "تم إنشاء فاتورة PayPal الخاصة بك. يرجى التحقق من بريدك الإلكتروني لإتمام الدفع.",
+    "successUsdt": "تم إنشاء طلبك. يرجى إرسال تحويل الـ USDT وإرسال إثبات الدفع لنا على واتساب.",
+    "successTransfer": "تم إنشاء طلبك. يرجى إتمام التحويل الدولي وسنتواصل معك بالتفاصيل."
+  },
+
+  "tokens": "توكينات",
+
+  "auth": {
+    "account": "حسابك",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "createAccount": "إنشاء حساب جديد",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "loginFailed": "فشل تسجيل الدخول",
+    "registerFailed": "فشل إنشاء الحساب",
+    "passwordsNotMatch": "كلمتا المرور غير متطابقتين",
+    "hello": "مرحبًا {name}",
+    "helloShort": "مرحبًا {name}"
+  },
+
+  "shop": {
+    "title": "المتجر",
+    "all": "الكل",
+    "search": "ابحث عن منتجات…",
+    "addToCart": "أضف إلى السلة",
+    "tokens": "توكينات",
+    "pageOf": "الصفحة {cur} من {total}"
+  },
+
+  "account": {
+    "title": "حسابي",
+    "tabs": {
+      "overview": "نظرة عامة",
+      "orders": "الطلبات",
+      "lookups": "استعلامات VIN"
+    },
+    "cards": {
+      "totalOrders": "إجمالي الطلبات",
+      "totalLookups": "استعلامات VIN",
+      "completed": "مكتمل",
+      "tokensSpent": "التوكينات المصروفة",
+      "kiaBefore": "توكينات كيا / هيونداي (قبل 2017)",
+      "kiaAfter": "توكينات كيا / هيونداي (ابتداءً من 2017)"
+    },
+    "profile": {
+      "title": "الملف الشخصي",
+      "memberSince": "عضو منذ",
+      "edit": "تعديل",
+      "updated": "تم تحديث الملف الشخصي بنجاح.",
+      "updateFailed": "فشل تحديث الملف الشخصي."
+    },
+    "wallets": {
+      "title": "محافظ الخدمات",
+      "empty": "لا توجد محافظ بعد.",
+      "tokens": "توكينات"
+    },
+    "orders": {
+      "date": "التاريخ",
+      "status": "الحالة",
+      "payment": "الدفع",
+      "total": "الإجمالي",
+      "empty": "لا توجد طلبات حتى الآن."
+    },
+    "lookups": {
+      "service": "الخدمة",
+      "status": "الحالة",
+      "cost": "التوكينات",
+      "date": "التاريخ",
+      "empty": "لا توجد استعلامات VIN حتى الآن."
+    }
+  },
+
+  "service": {
+    "title": "الخدمة",
+    "walletTokens": "التوكينات المتاحة",
+    "costTokens": "التوكينات المطلوبة للحصول على البين كود",
+    "instructions": "التعليمات",
+    "requestTitle": "الطلب",
+    "submit": "إرسال الطلب",
+    "notEnoughTokens": "لا تملك عددًا كافيًا من التوكينات لهذه الخدمة.",
+    "enterVin": "أدخل رقم الشاسيه (VIN)",
+    "processing": "جاري المعالجة...",
+    "success": "تم إرسال الطلب بنجاح!",
+    "error": "فشل في إرسال الطلب.",
+    "requestPlaceholder": "أدخل القيمة هنا",
+    "resultTitle": "النتيجة",
+    "vin_size": "يجب أن يتكون رقم الشاسي (VIN) من 17 حرفًا بالضبط"
+  },
+
+  "services": {
+    "kiaBeforeTitle": "كيا / هيونداي القديمة (قبل 2017)",
+    "kiaAfterTitle": "كيا / هيونداي (2017 وما بعد)"
+  }
+}

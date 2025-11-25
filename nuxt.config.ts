@@ -1,0 +1,115 @@
+// nuxt.config.ts
+import { fileURLToPath } from 'url'
+
+const vueI18nConfigPath = fileURLToPath(new URL('./i18n.config.ts', import.meta.url))
+
+export default defineNuxtConfig({
+  compatibilityDate: '2025-11-05',
+
+  modules: [
+    '@pinia/nuxt',
+    '@nuxt/image',
+    '@vite-pwa/nuxt',
+    '@nuxtjs/i18n',
+    '@nuxtjs/tailwindcss'
+  ],
+
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {}
+    }
+  },
+  image: {
+    // add your backend host(s)
+    domains: ['pincode-backend.tlkeys.com'],
+  },
+  // ✅ IMPORTANT: give i18n a real absolute string path
+  i18n: {
+    vueI18n: vueI18nConfigPath,
+    locales: [
+      { code: 'en', iso: 'en', name: 'English', dir: 'ltr' },
+      { code: 'ar', iso: 'ar', name: 'العربية', dir: 'rtl' }
+    ],
+    defaultLocale: 'en',
+    strategy: 'prefix_except_default',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root'
+    },
+    bundle: { optimizeTranslationDirective: false }
+  },
+
+  nitro: {
+    routeRules: {
+      '/api/home/**': { swr: 60 }
+    }
+  },
+
+  app: {
+    head: {
+      titleTemplate: '%s - PIN Code Platform',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'robots', content: 'index,follow' }
+      ],
+      script: [
+        {
+          id: 'org-jsonld',
+          type: 'application/ld+json',
+          innerHTML: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "PIN Code Platform",
+            "url": "https://pin-code.com",
+            "logo": "https://pin-code.com/logo.png",
+            "email": "support@pin-code.com",
+            "telephone": "+971504429045",
+            "sameAs": [
+              "https://facebook.com/yourpage",
+              "https://instagram.com/yourpage",
+              "https://wa.me/971504429045"
+            ],
+            "contactPoint": [{
+              "@type": "ContactPoint",
+              "contactType": "customer support",
+              "email": "support@pin-code.com",
+              "telephone": "+971504429045",
+              "availableLanguage": ["en", "tr", "ar"]
+            }]
+          })
+        },
+        {
+          id: 'website-jsonld',
+          type: 'application/ld+json',
+          innerHTML: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "PIN Code Platform",
+            "url": "https://pin-code.com",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://pin-code.com/search?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          })
+        }
+      ],
+      __dangerouslyDisableSanitizersByTagID: {
+        'org-jsonld': ['innerHTML'],
+        'website-jsonld': ['innerHTML']
+      }
+    }
+  },
+  runtimeConfig: {
+  public: {
+    apiBase: process.env.API_BASE,
+    usdtWallet: process.env.USDT_WALLET || '',
+    whatsappNumber: process.env.WHATSAPP_NUMBER || '',
+    siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
+    siteName: process.env.NUXT_PUBLIC_SITE_NAME
+    }
+  }
+})

@@ -1,0 +1,102 @@
+import { _ as __nuxt_component_0 } from './nuxt-link-DhHsLoL_.mjs';
+import { defineComponent, reactive, ref, mergeProps, withCtx, unref, createTextVNode, toDisplayString, useSSRContext } from 'vue';
+import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrRenderDynamicModel, ssrRenderClass, ssrIncludeBooleanAttr } from 'vue/server-renderer';
+import { a as useI18n, c as useRouter, d as useNuxtApp } from './server.mjs';
+import { u as useAuth } from './useAuth-CJcUDK_S.mjs';
+import { u as useCart } from './useCart-Djb1VdLO.mjs';
+import '../nitro/nitro.mjs';
+import 'node:http';
+import 'node:https';
+import 'node:events';
+import 'node:buffer';
+import 'node:fs';
+import 'node:path';
+import 'node:crypto';
+import 'node:url';
+import 'ipx';
+import 'pinia';
+import 'vue-router';
+import '../routes/renderer.mjs';
+import 'vue-bundle-renderer/runtime';
+import 'unhead/server';
+import 'devalue';
+import 'unhead/utils';
+
+const _sfc_main = /* @__PURE__ */ defineComponent({
+  __name: "login",
+  __ssrInlineRender: true,
+  setup(__props) {
+    const { t } = useI18n();
+    useRouter();
+    const { $api } = useNuxtApp();
+    typeof useAuth === "function" ? useAuth() : null;
+    useCart();
+    const loginForm = reactive({ email: "", password: "" });
+    const loadingLogin = ref(false);
+    const errLogin = ref(null);
+    const showLoginPass = ref(false);
+    const regForm = reactive({
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+      password_confirmation: ""
+    });
+    const loadingRegister = ref(false);
+    const errRegister = ref(null);
+    const showRegPass = ref(false);
+    return (_ctx, _push, _parent, _attrs) => {
+      const _component_NuxtLink = __nuxt_component_0;
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "max-w-5xl mx-auto px-4 py-10" }, _attrs))}><nav class="flex items-center text-sm text-gray-500 mb-6" aria-label="Breadcrumb">`);
+      _push(ssrRenderComponent(_component_NuxtLink, {
+        to: "/",
+        class: "hover:text-orange-500"
+      }, {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            _push2(`${ssrInterpolate(unref(t)("common.home") || "Home")}`);
+          } else {
+            return [
+              createTextVNode(toDisplayString(unref(t)("common.home") || "Home"), 1)
+            ];
+          }
+        }),
+        _: 1
+      }, _parent));
+      _push(`<span class="mx-2">›</span><span class="text-gray-800 font-medium">${ssrInterpolate(unref(t)("auth.login") || "Login")}</span></nav><h1 class="text-2xl sm:text-3xl font-bold mb-8">${ssrInterpolate(unref(t)("auth.login"))}</h1><div class="bg-white rounded-2xl border shadow-sm"><div class="grid lg:grid-cols-[1fr_auto_1fr]"><section class="p-6 sm:p-8"><h2 class="text-xl font-semibold mb-4">${ssrInterpolate(unref(t)("auth.login") || "Login")}</h2><form class="space-y-4"><div><label class="block text-sm text-gray-700 mb-1">${ssrInterpolate(unref(t)("common.email") || "Email")}</label><input${ssrRenderAttr("value", unref(loginForm).email)} type="email" required class="w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"></div><div><label class="block text-sm text-gray-700 mb-1">${ssrInterpolate(unref(t)("auth.password") || "Password")}</label><div class="relative"><input${ssrRenderAttr("type", unref(showLoginPass) ? "text" : "password")}${ssrRenderDynamicModel(unref(showLoginPass) ? "text" : "password", unref(loginForm).password, null)} required class="w-full rounded-xl border px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-orange-400"><button type="button" class="absolute inset-y-0 right-2 my-auto text-gray-500"><span class="${ssrRenderClass(unref(showLoginPass) ? "i-lucide:eye-off" : "i-lucide:eye")}"></span></button></div></div><button class="btn w-full"${ssrIncludeBooleanAttr(unref(loadingLogin)) ? " disabled" : ""}>`);
+      if (!unref(loadingLogin)) {
+        _push(`<span>${ssrInterpolate(unref(t)("auth.login") || "Login")}</span>`);
+      } else {
+        _push(`<span>${ssrInterpolate(unref(t)("common.loading") || "Loading…")}</span>`);
+      }
+      _push(`</button>`);
+      if (unref(errLogin)) {
+        _push(`<p class="text-red-600 text-sm">${ssrInterpolate(unref(errLogin))}</p>`);
+      } else {
+        _push(`<!---->`);
+      }
+      _push(`</form></section><div class="relative"><div class="hidden lg:block w-px h-full bg-gray-200"></div><div class="lg:hidden h-px w-full bg-gray-200"></div><div class="hidden lg:flex absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"><span class="text-xs text-gray-500 bg-white px-2">OR</span></div><div class="lg:hidden flex justify-center"><span class="text-xs text-gray-500 bg-white px-2 -mt-3">OR</span></div></div><section class="p-6 sm:p-8"><h2 class="text-xl font-semibold mb-4">${ssrInterpolate(unref(t)("auth.register") || "Register")}</h2><form class="space-y-4"><div class="grid sm:grid-cols-2 gap-3"><div><label class="block text-sm text-gray-700 mb-1">${ssrInterpolate(unref(t)("auth.firstName") || "First name")}</label><input${ssrRenderAttr("value", unref(regForm).first_name)} type="text" required class="w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"></div><div><label class="block text-sm text-gray-700 mb-1">${ssrInterpolate(unref(t)("auth.lastName") || "Last name")}</label><input${ssrRenderAttr("value", unref(regForm).last_name)} type="text" required class="w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"></div></div><div><label class="block text-sm text-gray-700 mb-1">${ssrInterpolate(unref(t)("common.email") || "Email")}</label><input${ssrRenderAttr("value", unref(regForm).email)} type="email" required class="w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"></div><div><label class="block text-sm text-gray-700 mb-1">${ssrInterpolate(unref(t)("auth.password") || "Password")}</label><div class="relative"><input${ssrRenderAttr("type", unref(showRegPass) ? "text" : "password")}${ssrRenderDynamicModel(unref(showRegPass) ? "text" : "password", unref(regForm).password, null)} required minlength="6" class="w-full rounded-xl border px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-orange-400"><button type="button" class="absolute inset-y-0 right-2 my-auto text-gray-500"><span class="${ssrRenderClass(unref(showRegPass) ? "i-lucide:eye-off" : "i-lucide:eye")}"></span></button></div></div><div><label class="block text-sm text-gray-700 mb-1">${ssrInterpolate(unref(t)("auth.confirmPassword") || "Confirm password")}</label><input${ssrRenderAttr("type", unref(showRegPass) ? "text" : "password")}${ssrRenderDynamicModel(unref(showRegPass) ? "text" : "password", unref(regForm).password_confirmation, null)} required minlength="6" class="w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"></div><button class="btn w-full"${ssrIncludeBooleanAttr(unref(loadingRegister)) ? " disabled" : ""}>`);
+      if (!unref(loadingRegister)) {
+        _push(`<span>${ssrInterpolate(unref(t)("auth.createAccount") || "Create account")}</span>`);
+      } else {
+        _push(`<span>${ssrInterpolate(unref(t)("common.loading") || "Loading…")}</span>`);
+      }
+      _push(`</button>`);
+      if (unref(errRegister)) {
+        _push(`<p class="text-red-600 text-sm">${ssrInterpolate(unref(errRegister))}</p>`);
+      } else {
+        _push(`<!---->`);
+      }
+      _push(`</form></section></div></div></div>`);
+    };
+  }
+});
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/login.vue");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+
+export { _sfc_main as default };
+//# sourceMappingURL=login-DLFFdi_x.mjs.map
