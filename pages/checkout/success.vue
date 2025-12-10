@@ -88,7 +88,7 @@ const orderId = computed(() => route.query.order_id || '---')
 const method = computed(() => route.query.method || '') // 'usdt' or 'transfer'
 
 // 2. Config Data
-const usdtWallet = computed(() => runtimeConfig.public?.usdtWallet || 'TRC20_WALLET_MISSING')
+const usdtWallet = computed(() => 'TMUnF98HTXiW3uQz4VbktLJuEaHcYS47zb')
 const whatsappNumber = computed(() =>  '+447414902439') // fallback number
 
 // 3. WhatsApp Link Logic

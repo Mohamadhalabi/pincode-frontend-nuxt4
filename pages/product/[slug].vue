@@ -288,7 +288,7 @@
       </div>
     </div>
 
-    <section v-if="pack" ref="relatedSentinel" class="mt-12 border-t border-gray-100 pt-8">
+    <!-- <section v-if="pack" ref="relatedSentinel" class="mt-12 border-t border-gray-100 pt-8">
       <h2 class="text-xl sm:text-2xl font-bold mb-6 text-gray-900">
         {{ $t('product.related') || 'Related Token Packs' }}
       </h2>
@@ -343,7 +343,7 @@
       <p v-else-if="relTried" class="text-sm text-gray-500 italic">
         {{ $t('product.noRelated') || 'No related packs found.' }}
       </p>
-    </section>
+    </section> -->
 
     <div
       v-if="zoomOpen && pack?.image_url"
@@ -712,16 +712,7 @@ useHead(() => {
   // Breadcrumb LD
   const bcItems: any[] = [
     { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl.value}/` },
-    { '@type': 'ListItem', position: 2, name: t('nav.categories') || 'Categories', item: `${baseUrl.value}/categories` },
   ]
-  if (packCategory.value) {
-    bcItems.push({
-      '@type': 'ListItem',
-      position: 3,
-      name: packCategory.value.name,
-      item: `${baseUrl.value}/categories/${packCategory.value.slug ?? packCategory.value.id}`
-    })
-  }
   bcItems.push({
     '@type': 'ListItem',
     position: bcItems.length + 1,

@@ -164,7 +164,7 @@ const contactSchema = computed(() => ({
     "@type": "ContactPoint",
     "contactType": "customer support",
     "email": "support@pin-code.com",
-    "telephone": "+971504429045",
+    "telephone": "+447414902439",
     "availableLanguage": ["en", "tr", "ar"]
   }
 }))

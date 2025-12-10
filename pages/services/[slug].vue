@@ -162,7 +162,7 @@ async function submitLookup() {
 
 // Open WhatsApp with a pre-filled message
 function openWhatsapp() {
-  const rawNumber = '+971504429045'
+  const rawNumber = '+447414902439'
   const digitsOnly = rawNumber.replace(/\D/g, '')
 
   const lines = [

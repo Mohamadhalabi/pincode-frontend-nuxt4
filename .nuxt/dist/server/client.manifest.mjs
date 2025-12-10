@@ -1,1 +1,0 @@
-export { default } from "file:///Users/mohamadalhalabi/development/pincode-frontend-nuxt4/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
