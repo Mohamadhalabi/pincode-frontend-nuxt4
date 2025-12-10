@@ -11,6 +11,8 @@ defineProps<{
   }
 }>()
 
+// Note: Ensure the locale is handled in formatting if you want Arabic numbers, 
+// otherwise standard Intl is fine.
 const fmt = (n: number) =>
   new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD' }).format(n)
 </script>
@@ -34,7 +36,10 @@ const fmt = (n: number) =>
       <div v-if="offer.compareAt" class="text-sm text-gray-500 line-through">
         {{ fmt(offer.compareAt) }}
       </div>
-      <NuxtLink :to="offer.href || '/offers'" class="btn-primary mt-4 w-full">Buy Now</NuxtLink>
+      
+      <NuxtLinkLocale :to="offer.href || '/offers'" class="btn-primary mt-4 w-full">
+        {{ $t('btn.buyNow') }}
+      </NuxtLinkLocale>
     </div>
   </div>
 </template>

@@ -1,40 +1,36 @@
-<!-- pages/cart.vue -->
 <template>
   <div class="mx-auto max-w-6xl px-4 py-8 lg:py-12">
     <h1 class="mb-8 text-3xl font-extrabold tracking-tight text-gray-900">
       {{ t('cart.title') || 'Your Cart' }}
     </h1>
 
-    <!-- Empty -->
     <div
       v-if="mounted && itemsLen === 0"
       class="rounded-3xl border border-dashed border-gray-300 bg-gray-50 p-12 text-center text-gray-600"
     >
       <div class="mb-4 text-6xl opacity-20">🛒</div>
       <p class="mb-6 text-lg font-medium">{{ t('cart.empty') || 'Your cart is currently empty.' }}</p>
-      <NuxtLink
+      <NuxtLinkLocale
         to="/"
         class="btn inline-flex"
       >
         {{ t('common.continueShopping') || 'Start Shopping' }}
-      </NuxtLink>
+      </NuxtLinkLocale>
     </div>
 
-    <!-- Content -->
     <div v-else class="grid gap-8 lg:grid-cols-12">
-      <!-- Items (Table on md+, cards on mobile) -->
+      
       <section class="lg:col-span-8 space-y-6">
-        <!-- Skeleton -->
+        
         <div v-if="!mounted" class="space-y-4">
           <div v-for="i in 3" :key="i" class="h-32 rounded-2xl border bg-gray-50 animate-pulse" />
         </div>
 
-        <!-- Table (md+) -->
         <div v-else class="hidden md:block rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
           <table class="w-full text-sm">
             <thead class="bg-gray-50 border-b border-gray-200 text-gray-500 uppercase text-xs tracking-wider">
               <tr>
-                <th class="px-6 py-4 text-left font-bold w-[500px]">{{ t('cart.product') || 'Product' }}</th>
+                <th class="px-6 py-4 text-left font-bold">{{ t('cart.product') || 'Product' }}</th>
                 <th class="px-4 py-4 text-right font-bold">{{ t('cart.price') || 'Price' }}</th>
                 <th class="px-4 py-4 text-center font-bold">{{ t('cart.qty') || 'Qty' }}</th>
                 <th class="px-4 py-4 text-center font-bold">{{ t('tokens') || 'Tokens' }}</th>
@@ -49,26 +45,26 @@
                 :key="rowKey(it)"
                 class="hover:bg-[#f0fdfc]/30 transition-colors"
               >
-                <!-- Product -->
                 <td class="px-6 py-5">
-                  <div class="flex items-start gap-4">
+                  <div class="flex items-start gap-5">
                     <NuxtImg
                       v-if="it?.image"
                       :src="it.image"
                       width="80" height="80"
                       :modifiers="{ fit: 'cover' }"
-                      class="h-20 w-20 rounded-xl border border-gray-200 bg-white object-contain p-1"
+                      class="h-20 w-20 shrink-0 rounded-xl border border-gray-200 bg-white object-contain p-1"
                       alt=""
                     />
-                    <div v-else class="h-20 w-20 rounded-xl border border-gray-200 bg-gray-50 grid place-items-center text-gray-400">—</div>
+                    <div v-else class="h-20 w-20 shrink-0 rounded-xl border border-gray-200 bg-gray-50 grid place-items-center text-gray-400">—</div>
 
-                    <div class="min-w-0 pt-1">
-                      <NuxtLink
+                    <div class="min-w-0 flex-grow pt-1">
+                      <NuxtLinkLocale
                         :to="`/product/${it?.slug}`"
-                        class="line-clamp-2 text-base font-bold leading-snug hover:text-[#0e5e6f] hover:underline text-gray-900 transition-colors"
+                        class="block text-lg font-extrabold leading-tight text-gray-900 hover:text-[#0e5e6f] hover:underline transition-colors break-words"
+                        :title="it?.name"
                       >
                         {{ it?.name }}
-                      </NuxtLink>
+                      </NuxtLinkLocale>
                       <div class="mt-2 flex flex-wrap items-center gap-2 text-xs">
                         <span
                           v-if="it?.sku"
@@ -79,10 +75,8 @@
                   </div>
                 </td>
 
-                <!-- Price -->
                 <td class="px-4 py-5 text-right tabular-nums font-medium text-gray-600">${{ price(it?.price) }}</td>
 
-                <!-- Qty -->
                 <td class="px-4 py-5">
                   <div class="flex justify-center">
                     <div class="inline-flex items-center rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
@@ -115,7 +109,6 @@
                   </div>
                 </td>
 
-                <!-- Tokens -->
                 <td class="px-4 py-5 text-center">
                   <span v-if="it?.meta?.tokens" class="tabular-nums font-medium text-[#0e5e6f] bg-[#f0fdfc] px-2 py-1 rounded-lg text-xs">
                     {{ it?.qty * it.meta.tokens }}
@@ -123,12 +116,10 @@
                   <span v-else class="text-gray-300">—</span>
                 </td>
 
-                <!-- Line total -->
                 <td class="px-4 py-5 text-right text-base font-bold tabular-nums text-[#0e5e6f]">
                   ${{ price(lineTotal(it)) }}
                 </td>
 
-                <!-- Actions -->
                 <td class="px-6 py-5 text-right">
                   <button
                     class="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all disabled:opacity-50"
@@ -144,79 +135,88 @@
           </table>
         </div>
 
-        <!-- Mobile cards (< md) -->
         <div v-if="mounted" class="md:hidden space-y-4">
           <div
             v-for="it in itemsRef"
             :key="rowKey(it)"
             class="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm"
           >
-            <div class="flex items-start gap-4">
+            <div class="flex gap-4">
               <NuxtImg
                 v-if="it?.image"
                 :src="it.image"
                 width="96" height="96"
                 :modifiers="{ fit: 'cover' }"
-                class="h-24 w-24 rounded-xl border border-gray-100 bg-white object-contain p-1"
+                class="h-24 w-24 shrink-0 rounded-xl border border-gray-100 bg-white object-contain p-1"
                 alt=""
               />
-              <div v-else class="h-24 w-24 rounded-xl border bg-gray-50 grid place-items-center text-gray-400">—</div>
+              <div v-else class="h-24 w-24 shrink-0 rounded-xl border bg-gray-50 grid place-items-center text-gray-400">—</div>
 
-              <div class="min-w-0 flex-1">
-                <NuxtLink :to="`/product/${it?.slug}`" class="line-clamp-2 font-bold text-gray-900 leading-snug hover:text-[#0e5e6f]">
+              <div class="flex-1 min-w-0 flex flex-col pt-1">
+                <NuxtLinkLocale 
+                  :to="`/product/${it?.slug}`" 
+                  class="text-lg font-extrabold text-gray-900 leading-snug hover:text-[#0e5e6f] break-words block"
+                  :title="it?.name"
+                >
                   {{ it?.name }}
-                </NuxtLink>
-                <div class="mt-1 flex flex-wrap items-center gap-2 text-xs">
-                   <span class="font-medium text-[#0e5e6f]">${{ price(it?.price) }} / unit</span>
-                </div>
-
-                <div class="mt-4 flex items-center justify-between">
-                  <div class="inline-flex items-center rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden h-9">
-                    <button
-                      type="button"
-                      class="h-full w-9 grid place-items-center hover:bg-gray-50 disabled:opacity-50 text-gray-500 font-bold"
-                      :disabled="busyId === cartId(it)"
-                      @click.stop="dec(it)"
-                    >−</button>
-                    <input
-                      :value="it?.qty"
-                      inputmode="numeric"
-                      pattern="[0-9]*"
-                      class="h-full w-10 border-x border-gray-100 text-center outline-none disabled:opacity-60 text-sm font-semibold"
-                      :disabled="busyId === cartId(it)"
-                      @input="onQtyInput($event, it)"
-                      @blur="onQtyBlur($event, it)"
-                    />
-                    <button
-                      type="button"
-                      class="h-full w-9 grid place-items-center hover:bg-gray-50 disabled:opacity-50 text-gray-500 font-bold"
-                      :disabled="busyId === cartId(it)"
-                      @click.stop="inc(it)"
-                    >+</button>
-                  </div>
-
-                  <div class="text-right">
-                    <div class="text-[10px] uppercase tracking-wide text-gray-400 font-bold">Total</div>
-                    <div class="text-lg font-bold text-[#0e5e6f]">${{ price(lineTotal(it)) }}</div>
-                  </div>
+                </NuxtLinkLocale>
+                
+                <div class="mt-2 flex flex-wrap items-center gap-2 text-xs text-gray-500">
+                   <span v-if="it?.sku" class="font-mono bg-gray-100 px-1.5 py-0.5 rounded">SKU: {{ it.sku }}</span>
+                   <span class="font-bold text-[#0e5e6f]">${{ price(it?.price) }} / unit</span>
                 </div>
               </div>
             </div>
-             <div class="mt-3 pt-3 border-t border-gray-100 flex justify-end">
+
+            <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+              <div class="inline-flex items-center rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden h-10">
+                <button
+                  type="button"
+                  class="h-full w-10 grid place-items-center hover:bg-gray-50 disabled:opacity-50 text-gray-500 font-bold text-lg"
+                  :disabled="busyId === cartId(it)"
+                  @click.stop="dec(it)"
+                >−</button>
+                <input
+                  :value="it?.qty"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="h-full w-10 border-x border-gray-100 text-center outline-none disabled:opacity-60 text-base font-bold text-gray-900"
+                  :disabled="busyId === cartId(it)"
+                  @input="onQtyInput($event, it)"
+                  @blur="onQtyBlur($event, it)"
+                />
+                <button
+                  type="button"
+                  class="h-full w-10 grid place-items-center hover:bg-gray-50 disabled:opacity-50 text-gray-500 font-bold text-lg"
+                  :disabled="busyId === cartId(it)"
+                  @click.stop="inc(it)"
+                >+</button>
+              </div>
+
+              <div class="text-right">
+                <div class="text-[10px] uppercase tracking-wide text-gray-400 font-bold">Total</div>
+                <div class="text-xl font-black text-[#0e5e6f] leading-none">${{ price(lineTotal(it)) }}</div>
+              </div>
+            </div>
+
+            <div class="mt-3 flex justify-end">
                <button
-                  class="text-xs font-semibold text-red-600 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-colors"
+                  class="text-xs font-semibold text-red-500 hover:text-red-700 hover:underline transition-colors flex items-center gap-1"
                   :disabled="busyId === cartId(it)"
                   @click.stop="removeItem(it)"
                 >
-                  Remove Item
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3.5 h-3.5">
+                    <path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z" clip-rule="evenodd" />
+                  </svg>
+                  {{ t('btn.remove') || 'Remove Item' }}
                 </button>
              </div>
           </div>
 
-          <div v-if="itemsLen" class="flex items-center justify-between pt-2">
-            <NuxtLink to="/" class="text-sm font-medium text-gray-600 hover:text-[#0e5e6f] transition-colors">
-              ← {{ t('common.continueShopping') || 'Continue shopping' }}
-            </NuxtLink>
+          <div v-if="itemsLen" class="flex items-center justify-between pt-2 px-1">
+            <NuxtLinkLocale to="/" class="text-sm font-bold text-gray-600 hover:text-[#0e5e6f] transition-colors flex items-center gap-1">
+              <span>←</span> {{ t('common.continueShopping') || 'Continue shopping' }}
+            </NuxtLinkLocale>
             <button type="button" class="text-sm font-medium text-red-600 hover:bg-red-50 px-3 py-1 rounded-lg transition-colors" @click="clearAll">
               {{ t('cart.clear') || 'Clear cart' }}
             </button>
@@ -224,7 +224,6 @@
         </div>
       </section>
 
-      <!-- Summary -->
       <aside class="lg:col-span-4">
         <div class="lg:sticky lg:top-24 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
           <div class="border-b border-gray-100 bg-gradient-to-r from-[#0e5e6f]/5 to-[#3adbc4]/10 px-6 py-4">
@@ -243,27 +242,25 @@
             </div>
 
             <div class="pt-2">
-              <!-- If logged in: go to checkout -->
               <template v-if="isLoggedIn">
-                <NuxtLink to="/checkout" class="btn w-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
+                <NuxtLinkLocale to="/checkout" class="btn w-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
                   {{ t('cart.checkout') || 'Proceed to Checkout' }}
-                </NuxtLink>
+                </NuxtLinkLocale>
               </template>
 
-              <!-- If NOT logged in: force login first -->
               <template v-else>
-                <NuxtLink to="/login" class="btn w-full">
+                <NuxtLinkLocale to="/login" class="btn w-full">
                   {{ t('cart.loginToCheckout') || 'Login to checkout' }}
-                </NuxtLink>
+                </NuxtLinkLocale>
                 <p class="mt-3 text-xs text-center text-gray-500">
                   {{ t('cart.loginToCheckoutHint') || 'You need to login to complete your purchase.' }}
                 </p>
               </template>
 
               <div class="mt-3 text-center md:hidden">
-                 <NuxtLink to="/" class="text-sm text-gray-500 hover:text-[#0e5e6f]">
+                 <NuxtLinkLocale to="/" class="text-sm text-gray-500 hover:text-[#0e5e6f] font-medium">
                   {{ t('common.continueShopping') || 'Continue shopping' }}
-                </NuxtLink>
+                </NuxtLinkLocale>
               </div>
             </div>
           </div>

@@ -76,7 +76,7 @@ async function submitRegister() {
   <div class="max-w-5xl mx-auto px-4 py-10 sm:py-16">
     <!-- Breadcrumb -->
     <nav class="flex items-center text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
-      <NuxtLink to="/" class="hover:text-[#0e5e6f] transition-colors">{{ t('common.home') || 'Home' }}</NuxtLink>
+      <NuxtLinkLocale to="/" class="hover:text-[#0e5e6f] transition-colors">{{ t('common.home') || 'Home' }}</NuxtLinkLocale>
       <span class="mx-2 text-gray-300">›</span>
       <span class="text-gray-900 font-medium">{{ t('auth.login') || 'Login' }}</span>
     </nav>

@@ -716,72 +716,72 @@ const _routes = [
   {
     name: "faq___en",
     path: "/faq",
-    component: () => import('./faq-L6kRh64w.mjs')
+    component: () => import('./faq-JWpXwaxE.mjs')
   },
   {
     name: "faq___ar",
     path: "/ar/faq",
-    component: () => import('./faq-L6kRh64w.mjs')
+    component: () => import('./faq-JWpXwaxE.mjs')
   },
   {
     name: "cart___en",
     path: "/cart",
-    component: () => import('./cart-bPkhi3f-.mjs')
+    component: () => import('./cart-BbMF__Ls.mjs')
   },
   {
     name: "cart___ar",
     path: "/ar/cart",
-    component: () => import('./cart-bPkhi3f-.mjs')
+    component: () => import('./cart-BbMF__Ls.mjs')
   },
   {
     name: "index___en",
     path: "/",
-    component: () => import('./index-0p477zBX.mjs')
+    component: () => import('./index-Cu5uJu25.mjs')
   },
   {
     name: "index___ar",
     path: "/ar",
-    component: () => import('./index-0p477zBX.mjs')
+    component: () => import('./index-Cu5uJu25.mjs')
   },
   {
     name: "login___en",
     path: "/login",
-    component: () => import('./login-DLFFdi_x.mjs')
+    component: () => import('./login-C-Bv_KQA.mjs')
   },
   {
     name: "login___ar",
     path: "/ar/login",
-    component: () => import('./login-DLFFdi_x.mjs')
+    component: () => import('./login-C-Bv_KQA.mjs')
   },
   {
     name: "account___en",
     path: "/account",
-    component: () => import('./account-BJAXUGMH.mjs')
+    component: () => import('./account-S_-GPtFU.mjs')
   },
   {
     name: "account___ar",
     path: "/ar/account",
-    component: () => import('./account-BJAXUGMH.mjs')
+    component: () => import('./account-S_-GPtFU.mjs')
   },
   {
     name: "about-us___en",
     path: "/about-us",
-    component: () => import('./about-us-VlEP3JQI.mjs')
+    component: () => import('./about-us-DWCKf9Sq.mjs')
   },
   {
     name: "about-us___ar",
     path: "/ar/about-us",
-    component: () => import('./about-us-VlEP3JQI.mjs')
+    component: () => import('./about-us-DWCKf9Sq.mjs')
   },
   {
     name: "checkout___en",
     path: "/checkout",
-    component: () => import('./checkout-1W7hy-ee.mjs')
+    component: () => import('./checkout-C-ymGo6e.mjs')
   },
   {
     name: "checkout___ar",
     path: "/ar/checkout",
-    component: () => import('./checkout-1W7hy-ee.mjs')
+    component: () => import('./checkout-C-ymGo6e.mjs')
   },
   {
     name: "contact-us___en",
@@ -794,84 +794,44 @@ const _routes = [
     component: () => import('./contact-us-DXNUar4B.mjs')
   },
   {
-    name: "lookups-new___en",
-    path: "/lookups/new",
-    component: () => import('./new-Cmr6XJcD.mjs')
-  },
-  {
-    name: "lookups-new___ar",
-    path: "/ar/lookups/new",
-    component: () => import('./new-Cmr6XJcD.mjs')
-  },
-  {
-    name: "lookups___en",
-    path: "/lookups",
-    component: () => import('./index-DZmYvrwY.mjs')
-  },
-  {
-    name: "lookups___ar",
-    path: "/ar/lookups",
-    component: () => import('./index-DZmYvrwY.mjs')
-  },
-  {
     name: "privacy-policy___en",
     path: "/privacy-policy",
-    component: () => import('./privacy-policy-DmHPcmHT.mjs')
+    component: () => import('./privacy-policy-Baxwr9-8.mjs')
   },
   {
     name: "privacy-policy___ar",
     path: "/ar/privacy-policy",
-    component: () => import('./privacy-policy-DmHPcmHT.mjs')
+    component: () => import('./privacy-policy-Baxwr9-8.mjs')
   },
   {
     name: "product-slug___en",
     path: "/product/:slug()",
-    component: () => import('./_slug_-DrH0hkhw.mjs')
+    component: () => import('./_slug_-caCJxUB4.mjs')
   },
   {
     name: "product-slug___ar",
     path: "/ar/product/:slug()",
-    component: () => import('./_slug_-DrH0hkhw.mjs')
-  },
-  {
-    name: "categories-id___en",
-    path: "/categories/:id()",
-    component: () => import('./_id_-DsSqC9eZ.mjs')
-  },
-  {
-    name: "categories-id___ar",
-    path: "/ar/categories/:id()",
-    component: () => import('./_id_-DsSqC9eZ.mjs')
+    component: () => import('./_slug_-caCJxUB4.mjs')
   },
   {
     name: "services-slug___en",
     path: "/services/:slug()",
-    component: () => import('./_slug_-BJbmDp7S.mjs')
+    component: () => import('./_slug_-bXae20sF.mjs')
   },
   {
     name: "services-slug___ar",
     path: "/ar/services/:slug()",
-    component: () => import('./_slug_-BJbmDp7S.mjs')
-  },
-  {
-    name: "categories___en",
-    path: "/categories",
-    component: () => import('./index-DHCtstSj.mjs')
-  },
-  {
-    name: "categories___ar",
-    path: "/ar/categories",
-    component: () => import('./index-DHCtstSj.mjs')
+    component: () => import('./_slug_-bXae20sF.mjs')
   },
   {
     name: "terms-conditions___en",
     path: "/terms-conditions",
-    component: () => import('./terms-conditions-DLHm2OE2.mjs')
+    component: () => import('./terms-conditions-1WOXnDmH.mjs')
   },
   {
     name: "terms-conditions___ar",
     path: "/ar/terms-conditions",
-    component: () => import('./terms-conditions-DLHm2OE2.mjs')
+    component: () => import('./terms-conditions-1WOXnDmH.mjs')
   }
 ];
 const _wrapInTransition = (props, children) => {
@@ -1336,11 +1296,11 @@ const localeLoaders = {
 };
 const vueI18nConfigs = [
   () => import(
-    './i18n.config-9_7X8U7K.mjs'
+    './i18n.config-I4XlkdBM.mjs'
     /* webpackChunkName: "config_i18n_46config_46ts_01a3c696" */
   ),
   () => import(
-    './i18n.config-9_7X8U7K.mjs'
+    './i18n.config-I4XlkdBM.mjs'
     /* webpackChunkName: "config_i18n_46config_46ts_01a3c696" */
   )
 ];
@@ -6536,8 +6496,8 @@ const __nuxt_component_0 = defineComponent({
   }
 });
 const layouts = {
-  "app-header": defineAsyncComponent(() => import('./AppHeader-JI18PAf7.mjs').then((m) => m.default || m)),
-  default: defineAsyncComponent(() => import('./default-DfK3ZxL-.mjs').then((m) => m.default || m))
+  "app-header": defineAsyncComponent(() => import('./AppHeader-DVkgbCjz.mjs').then((m) => m.default || m)),
+  default: defineAsyncComponent(() => import('./default-D8h04NaM.mjs').then((m) => m.default || m))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -6893,5 +6853,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { useI18n as a, useRuntimeConfig as b, useRouter as c, useNuxtApp as d, entry$1 as default, useRequestEvent as e, useRoute as f, asyncDataDefaults as g, createError as h, useState as i, hasProtocol as j, joinURL as k, withoutTrailingSlash as l, nuxtLinkDefaults as m, navigateTo as n, withLeadingSlash as o, parseQuery as p, parseURL as q, resolveRouteObject$1 as r, encodeParam as s, encodePath as t, useHead as u, useLocalePath as v, withTrailingSlash as w, useSwitchLocalePath as x };
+export { useI18n as a, useRuntimeConfig as b, useRouter as c, useNuxtApp as d, entry$1 as default, useRequestEvent as e, useRoute as f, asyncDataDefaults as g, createError as h, useState as i, hasProtocol as j, joinURL as k, withoutTrailingSlash as l, nuxtLinkDefaults as m, navigateTo as n, useLocalePath as o, parseQuery as p, useSwitchLocalePath as q, resolveRouteObject$1 as r, withLeadingSlash as s, parseURL as t, useHead as u, encodeParam as v, withTrailingSlash as w, encodePath as x };
 //# sourceMappingURL=server.mjs.map

@@ -34,12 +34,8 @@
     "supportedBrands" : "Supported Brands"
   },
 
-  "btn": {
-    "buyTokens": "Buy Tokens",
-    "addToCart": "Add To Cart"
-  },
-
   "common": {
+    "required_info": "Required Inputs",
     "price" : "Price",
     "quantity" : "Quantity",
     "save": "Save",
@@ -74,7 +70,9 @@
   "product": {
     "category": "Category",
     "related": "Related Products",
-    "noRelated": "No Related Products"
+    "noRelated": "No Related Products",
+    "details": "Product details",
+    "sku": "SKU"
   },
 
   "nav": {
@@ -140,6 +138,7 @@
     "notes": "Order notes (optional)",
     "notesPlaceholder": "Any special instructions about this order…",
     "placeOrder": "Place order",
+    "successPaypalNoUrl": "Invoice sent to email.",
     "placing": "Placing order…",
     "summary": "Order summary",
     "info": "You will be contacted or redirected to complete the payment after placing your order.",
@@ -187,7 +186,8 @@
     "registerFailed": "Registration failed",
     "passwordsNotMatch": "Passwords do not match",
     "hello": "Hello {name}",
-    "helloShort": "Hello {name}"
+    "helloShort": "Hello {name}",
+    "signedInAs" : "Signed in as"
   },
 
   "shop": {
@@ -355,7 +355,6 @@
         }
       }
     },
-
     "terms": {
       "title": "Terms & Conditions",
       "subtitle": "Please read these terms carefully before using our services.",
@@ -387,6 +386,7 @@
       }
     },
       "faq": {
+      "contactSupport": "Contact Support",
       "title": "FAQ",
       "subtitle": "Answers to the most common questions about Kia / Hyundai PIN services.",
       "seo": {
@@ -432,5 +432,38 @@
         "body": "Contact us through WhatsApp or email and we’ll assist you as soon as possible."
       }
     }
+  },
+  "msg" :{
+      "fillRequired" : "Fill Required"
+    },
+    "btn" :{
+      "buyNow": "Buy Now",
+      "orderWhatsApp" : "Order On Whatsapp",
+          "buyTokens": "Buy Tokens",
+          "addToCart": "Add To Cart"
+    },
+
+  "footer": {
+    "questions": "Got questions? Call or WhatsApp us",
+    "contactInfo": "Contact Info",
+    "companyName": "4Pincode Services",
+    "location": "Sharjah – United Arab Emirates",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "support": "Support",
+    "home": "Home",
+    "newLookup": "New VIN Lookup",
+    "buyTokens": "Buy Tokens",
+    "faq": "FAQ",
+    "kiaOld": "Kia / Hyundai (Old)",
+    "kiaNew": "Kia / Hyundai (New)",
+    "pricing": "Pricing Plans",
+    "apiDocs": "API Documentation",
+    "contactUs": "Contact Us",
+    "aboutUs": "About Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "rights": "All Rights Reserved."
   }
+
 }

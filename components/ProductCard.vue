@@ -1,6 +1,6 @@
 <template>
   <div class="group overflow-hidden rounded-2xl border bg-white shadow-sm hover:shadow-md transition">
-    <NuxtLink :to="`/product/${p.slug}`" class="block aspect-[4/3] bg-gray-50">
+    <NuxtLinkLocale :to="`/product/${p.slug}`" class="block aspect-[4/3] bg-gray-50">
       <NuxtImg
         v-if="p?.image"
         :src="p.image"
@@ -9,18 +9,20 @@
         class="h-full w-full object-cover"
         alt=""
       />
-    </NuxtLink>
+    </NuxtLinkLocale>
 
     <div class="p-4">
-      <NuxtLink :to="`/product/${p.slug}`" class="line-clamp-2 font-medium hover:underline">
+      <NuxtLinkLocale :to="`/product/${p.slug}`" class="line-clamp-2 font-medium hover:underline">
         {{ p.name }}
-      </NuxtLink>
+      </NuxtLinkLocale>
 
       <div class="mt-2 flex items-center gap-2 text-xs">
         <span v-if="p?.tokens" class="rounded-full border px-2 py-0.5 text-gray-700">
-          <span class="i-lucide:key mr-1 text-[13px]"></span>{{ p.tokens }} tokens
+          <span class="i-lucide:key mr-1 text-[13px]"></span>{{ p.tokens }} {{ $t('shop.tokens') }}
         </span>
-        <span v-if="p?.sku" class="rounded-full bg-gray-100 px-2 py-0.5 text-gray-700">SKU: {{ p.sku }}</span>
+        <span v-if="p?.sku" class="rounded-full bg-gray-100 px-2 py-0.5 text-gray-700">
+          {{ $t('product.sku') }}: {{ p.sku }}
+        </span>
       </div>
 
       <div class="mt-3 flex items-center justify-between">
@@ -32,7 +34,7 @@
         </div>
         <button class="rounded-xl bg-orange-500 px-3 py-1.5 text-white text-sm hover:bg-orange-600"
                 @click="$emit('add', p)">
-          Add to cart
+          {{ $t('shop.addToCart') }}
         </button>
       </div>
     </div>

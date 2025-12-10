@@ -1,11 +1,9 @@
-<!-- pages/checkout.vue -->
 <template>
   <div class="mx-auto max-w-6xl px-4 py-8 lg:py-12">
     <h1 class="mb-8 text-3xl font-extrabold tracking-tight text-gray-900">
       {{ t('checkout.title') || 'Checkout' }}
     </h1>
 
-    <!-- Empty cart -->
     <div
       v-if="itemsLen === 0"
       class="rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-12 text-center text-gray-600"
@@ -13,17 +11,16 @@
       <p class="mb-4 text-lg font-medium">
         {{ t('checkout.empty') || 'Your cart is empty. Add products before checking out.' }}
       </p>
-      <NuxtLink
+      
+      <NuxtLinkLocale
         to="/"
         class="inline-flex items-center gap-2 rounded-xl border border-gray-300 bg-white px-5 py-2.5 text-sm font-bold text-gray-700 hover:bg-gray-50 hover:text-[#0e5e6f] transition-colors"
       >
         ← {{ t('common.continueShopping') || 'Continue shopping' }}
-      </NuxtLink>
+      </NuxtLinkLocale>
     </div>
 
-    <!-- Checkout content -->
     <div v-else class="grid gap-8 lg:grid-cols-12">
-      <!-- Billing / details form -->
       <section class="lg:col-span-8 space-y-6">
         <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
           <h2 class="text-lg font-bold text-gray-900 mb-5 border-b border-gray-100 pb-3">
@@ -44,7 +41,6 @@
                 />
               </div>
               
-              <!-- Email (from auth, read-only) -->
               <div>
                 <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">
                   {{ t('checkout.email') || 'Email' }}
@@ -73,14 +69,12 @@
               />
             </div>
 
-            <!-- Payment methods -->
             <div class="pt-6 mt-2 border-t border-gray-100">
               <h3 class="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">
                 {{ t('checkout.paymentMethod') || 'Payment Method' }}
               </h3>
 
               <div class="space-y-3">
-                <!-- PayPal -->
                 <label
                   class="flex items-start gap-4 p-4 rounded-xl border cursor-pointer transition-all duration-200"
                   :class="form.payment_method === 'paypal' ? 'border-[#3adbc4] bg-[#f0fdfc] shadow-sm' : 'border-gray-200 hover:border-[#3adbc4]/50 hover:bg-gray-50'"
@@ -106,7 +100,6 @@
                   </div>
                 </label>
 
-                <!-- USDT transfer -->
                 <label
                   class="flex items-start gap-4 p-4 rounded-xl border cursor-pointer transition-all duration-200"
                   :class="form.payment_method === 'usdt' ? 'border-[#3adbc4] bg-[#f0fdfc] shadow-sm' : 'border-gray-200 hover:border-[#3adbc4]/50 hover:bg-gray-50'"
@@ -163,7 +156,6 @@
                   </div>
                 </label>
 
-                <!-- International transfer -->
                 <label
                   class="flex items-start gap-4 p-4 rounded-xl border cursor-pointer transition-all duration-200"
                   :class="form.payment_method === 'transfer' ? 'border-[#3adbc4] bg-[#f0fdfc] shadow-sm' : 'border-gray-200 hover:border-[#3adbc4]/50 hover:bg-gray-50'"
@@ -194,7 +186,6 @@
         </div>
       </section>
 
-      <!-- Summary -->
       <aside class="lg:col-span-4">
         <div class="lg:sticky lg:top-24 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
           <div class="border-b border-gray-100 bg-gradient-to-r from-[#0e5e6f]/5 to-[#3adbc4]/10 px-6 py-4">
@@ -257,9 +248,10 @@
                 />
                 <span class="text-xs text-gray-600 group-hover:text-gray-900 transition-colors leading-relaxed">
                    {{ t('checkout.acceptTermsPre') || 'I accept the' }} 
-                   <NuxtLink to="/terms-conditions" target="_blank" class="text-[#0e5e6f] underline hover:text-[#3adbc4]">
+                   
+                   <NuxtLinkLocale to="/terms-conditions" target="_blank" class="text-[#0e5e6f] underline hover:text-[#3adbc4]">
                      {{ t('checkout.acceptTermsLink') || 'Terms & Conditions' }}
-                   </NuxtLink>
+                   </NuxtLinkLocale>
                 </span>
               </label>
 

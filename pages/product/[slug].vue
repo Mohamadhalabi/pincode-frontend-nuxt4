@@ -1,15 +1,12 @@
 <template>
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
-    <!-- Breadcrumb -->
     <nav class="mb-4 sm:mb-6" aria-label="Breadcrumb" v-if="!pending">
       <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-600">
         <li>
-          <NuxtLink to="/" class="hover:text-[#0e5e6f] hover:underline transition-colors">
+          <NuxtLinkLocale to="/" class="hover:text-[#0e5e6f] hover:underline transition-colors">
             {{ $t('common.home') || 'Home' }}
-          </NuxtLink>
+          </NuxtLinkLocale>
         </li>
-        <template v-if="packCategory">
-        </template>
         <li class="px-1 text-gray-400">/</li>
         <li class="text-gray-900 font-medium truncate max-w-[60%] sm:max-w-none">
           {{ pack?.name }}
@@ -17,7 +14,6 @@
       </ol>
     </nav>
 
-    <!-- Loading skeleton -->
     <div v-if="pending" class="grid gap-6 md:gap-8 md:grid-cols-2">
       <div class="h-[320px] rounded-2xl bg-gray-100 animate-pulse" />
       <div class="space-y-4">
@@ -28,14 +24,11 @@
       </div>
     </div>
 
-    <!-- Error -->
     <div v-else-if="errMsg" class="text-red-600 text-sm">
       {{ errMsg }}
     </div>
 
-    <!-- Header: image + sticky summary -->
     <div v-else-if="pack" class="grid gap-6 md:gap-8 md:grid-cols-2">
-      <!-- Image -->
       <div class="space-y-3">
         <button
           type="button"
@@ -55,11 +48,8 @@
             {{ $t('common.noImage') || 'No image' }}
           </div>
         </button>
-
-        <!-- Small info row under image (optional / neat) -->
       </div>
 
-      <!-- Sticky: title / price / category / CTA -->
       <aside class="space-y-6 lg:space-y-8 lg:sticky lg:top-24 self-start">
         <header class="space-y-3">
           <h1 class="text-2xl sm:text-3xl font-extrabold leading-tight text-gray-900">
@@ -81,11 +71,10 @@
               class="badge badge-cat transition"
             >
               {{ packCategory.name }}
-          </span>
+            </span>
           </div>
         </header>
 
-        <!-- Price block -->
         <div class="py-2">
           <div v-if="showStrike" class="flex items-end gap-3">
             <div class="text-4xl font-black text-[#e63946] tracking-tight leading-none">
@@ -101,10 +90,8 @@
           </div>
         </div>
 
-        <!-- Quantity + Add -->
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-          <!-- Qty Control -->
-          <div class="qty-control self-start sm:self-auto">
+        <div class="space-y-6">
+          <div class="qty-control max-w-[140px]">
             <button
               type="button"
               class="qty-btn"
@@ -113,14 +100,12 @@
             >
               –
             </button>
-
             <input
               v-model.number="qty"
               type="number"
               min="1"
               class="qty-input"
             />
-
             <button
               type="button"
               class="qty-btn"
@@ -131,13 +116,48 @@
             </button>
           </div>
 
-          <!-- Add to Cart -->
-          <button class="btn w-full sm:w-auto flex-1" @click="addToCart()">
+          <div v-if="pack.order_by_whatsapp" class="bg-gray-50 border border-gray-100 rounded-xl p-5 space-y-4">
+            
+            <template v-if="pack.category?.required_inputs?.length">
+              <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wide">
+                {{ $t('common.required_info') || 'Required Information' }}
+              </h3>
+              
+              <div v-for="(field, index) in pack.category.required_inputs" :key="index">
+                <label class="block text-sm font-medium text-gray-700 mb-1">
+                  {{ typeof field === 'string' ? field : (field.label || field.name) }} 
+                  <span class="text-red-500">*</span>
+                </label>
+                
+                <input 
+                  v-model="waForm[typeof field === 'string' ? field : field.name]"
+                  type="text" 
+                  class="input w-full bg-white"
+                  :placeholder="typeof field === 'string' ? '' : (field.placeholder || '')"
+                />
+              </div>
+            </template>
+
+            <button 
+              class="btn w-full bg-[#25D366] hover:bg-[#128C7E] border-none text-white !bg-none"
+              style="background-color: #25D366;"
+              @click="orderOnWhatsApp"
+              :disabled="!isWaFormValid"
+              :class="{'opacity-50 cursor-not-allowed': !isWaFormValid}"
+            >
+              <svg class="w-6 h-6 mr-2 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              {{ $t('btn.orderWhatsApp') || 'Order on WhatsApp' }}
+            </button>
+            <p v-if="!isWaFormValid" class="text-xs text-red-500 text-center">
+              * {{ $t('msg.fillRequired') || 'Please fill all required fields.' }}
+            </p>
+          </div>
+
+          <button v-else class="btn w-full sm:w-auto" @click="addToCart()">
             {{ $t('btn.addToCart') || 'Add to Cart' }}
           </button>
         </div>
 
-        <!-- Tiered pricing table -->
         <div v-if="pack?.pricing_tiers?.length" class="tier-wrap">
           <table class="tier-table">
             <thead>
@@ -184,7 +204,6 @@
       </aside>
     </div>
 
-    <!-- Full-width Tabs -->
     <div v-if="pack" class="mt-10 rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
       <div class="flex flex-wrap gap-2 border-b border-gray-100 px-3 sm:px-6 pt-2 sm:pt-3 bg-gray-50/50">
         <button
@@ -202,7 +221,6 @@
       </div>
 
       <div class="p-6 sm:p-8">
-        <!-- Description -->
         <section v-if="activeTab === 'desc'">
           <div v-if="pack.description" class="prose max-w-none text-gray-700">
             <div v-html="pack.description"></div>
@@ -212,7 +230,6 @@
           </p>
         </section>
 
-        <!-- FAQ -->
         <section v-else-if="activeTab === 'faq'">
           <div v-if="pack.faq" class="prose max-w-none text-gray-700" v-html="pack.faq"></div>
           <p v-else class="text-sm text-gray-500 italic">
@@ -220,7 +237,6 @@
           </p>
         </section>
 
-        <!-- Contact -->
         <section v-else>
           <form class="space-y-5 max-w-2xl" @submit.prevent="submitContact">
             <div class="grid sm:grid-cols-2 gap-4">
@@ -272,7 +288,6 @@
       </div>
     </div>
 
-    <!-- Related -->
     <section v-if="pack" ref="relatedSentinel" class="mt-12 border-t border-gray-100 pt-8">
       <h2 class="text-xl sm:text-2xl font-bold mb-6 text-gray-900">
         {{ $t('product.related') || 'Related Token Packs' }}
@@ -288,7 +303,7 @@
           :key="r.id"
           class="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-[#3adbc4]/40 transition-all duration-300 overflow-hidden group"
         >
-          <NuxtLink :to="`/product/${r.slug}`" class="block relative">
+          <NuxtLinkLocale :to="`/product/${r.slug}`" class="block relative">
             <NuxtImg
               v-if="r.image_url"
               :src="r.image_url"
@@ -298,15 +313,15 @@
               alt=""
             />
             <div v-else class="w-full h-40 grid place-items-center text-gray-400 bg-gray-50">—</div>
-          </NuxtLink>
+          </NuxtLinkLocale>
 
           <div class="p-4 space-y-2 border-t border-gray-50">
-            <NuxtLink
+            <NuxtLinkLocale
               :to="`/product/${r.slug}`"
               class="block font-bold leading-tight hover:text-[#0e5e6f] transition-colors line-clamp-2 text-gray-900"
             >
               {{ r.name }}
-            </NuxtLink>
+            </NuxtLinkLocale>
 
             <div class="text-lg font-bold">
               <template v-if="r.sale_price_usd && !(r.pricing_tiers?.length)">
@@ -330,7 +345,6 @@
       </p>
     </section>
 
-    <!-- Image Lightbox -->
     <div
       v-if="zoomOpen && pack?.image_url"
       class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 grid place-items-center p-4"
@@ -349,8 +363,19 @@
 </template>
 
 <script setup lang="ts">
-type CategoryLite = { id: number; name: string; slug?: string | null }
+// ✅ Updated Types: Allow simple string array OR object array for inputs
+type InputField = { name: string; label?: string; placeholder?: string } | string
+
+type CategoryLite = { 
+  id: number; 
+  name: string; 
+  slug?: string | null;
+  whatsapp_number?: string | null; 
+  required_inputs?: InputField[] | null; 
+}
+
 type PricingTier = { min_qty: number; max_qty?: number | null; price_usd: number; sale_price_usd?: number | null }
+
 type Pack = {
   id: number
   name: string
@@ -366,7 +391,9 @@ type Pack = {
   faq?: string | null
   service_category_id?: number | null
   category?: CategoryLite | null
-
+  
+  order_by_whatsapp?: boolean // ✅ Added
+  
   seo_title?: string | null
   seo_description?: string | null
   updated_at?: string | null
@@ -402,7 +429,50 @@ const packCategory = computed<CategoryLite | null>(() =>
       : null)
 )
 
-/* ----- pricing helpers ----- */
+/* ----- WhatsApp Logic (NEW & FIXED) ----- */
+const waForm = reactive<Record<string, string>>({})
+
+const isWaFormValid = computed(() => {
+  if (!pack.value?.order_by_whatsapp) return true
+  const req = pack.value.category?.required_inputs
+  if (!req || !req.length) return true
+  
+  // ✅ Check if every required field has a value
+  return req.every(field => {
+    // If field is string, use it as key; otherwise use field.name
+    const key = typeof field === 'string' ? field : field.name
+    const val = waForm[key]
+    return val && val.trim().length > 0
+  })
+})
+
+function orderOnWhatsApp() {
+  if (!pack.value || !isWaFormValid.value) return
+
+  const p = pack.value
+  const phone = p.category?.whatsapp_number || '905555555555' 
+  const inputs = p.category?.required_inputs || []
+  
+  let msg = `*New Order Request*\n`
+  msg += `Product: ${p.name}\n`
+  msg += `Qty: ${qty.value}\n`
+  msg += `Total Price: $${Number(effectivePrice.value * qty.value).toFixed(2)}\n\n`
+  
+  if (inputs.length > 0) {
+    msg += `*Details:*\n`
+    inputs.forEach(f => {
+      // ✅ Handle string vs object logic
+      const label = typeof f === 'string' ? f : (f.label || f.name)
+      const key = typeof f === 'string' ? f : f.name
+      msg += `- ${label}: ${waForm[key] || 'N/A'}\n`
+    })
+  }
+
+  const url = `https://wa.me/${phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(msg)}`
+  window.open(url, '_blank')
+}
+
+/* ----- Pricing Helpers ----- */
 function normalizedTiers(p: Pack): PricingTier[] {
   return (p.pricing_tiers || [])
     .slice()

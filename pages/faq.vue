@@ -39,9 +39,10 @@
       <p class="text-[#0e5e6f]/80 mb-4">
         {{ $t('pages.faq.help.body') }}
       </p>
-      <NuxtLink to="/contact-us" class="inline-flex items-center justify-center rounded-xl bg-white text-[#0e5e6f] border border-[#3adbc4]/50 px-6 py-2 font-bold hover:bg-[#0e5e6f] hover:text-white hover:border-transparent transition-all shadow-sm">
-        Contact Support
-      </NuxtLink>
+      
+      <NuxtLinkLocale to="/contact-us" class="inline-flex items-center justify-center rounded-xl bg-white text-[#0e5e6f] border border-[#3adbc4]/50 px-6 py-2 font-bold hover:bg-[#0e5e6f] hover:text-white hover:border-transparent transition-all shadow-sm">
+        {{ $t('pages.faq.contactSupport') }}
+      </NuxtLinkLocale>
     </div>
   </div>
 </template>

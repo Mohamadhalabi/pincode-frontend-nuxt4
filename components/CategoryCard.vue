@@ -8,7 +8,7 @@
         <span v-if="category.cost_tokens" class="pill bg-brand/10 text-brand">{{ category.cost_tokens }} token(s)</span>
       </div>
       <p class="text-sm text-gray-600">Behavior: {{ category.behavior }}</p>
-      <NuxtLink class="btn w-full" :to="`/categories/${category.id}`">Open</NuxtLink>
+      <NuxtLinkLocale class="btn w-full" :to="`/categories/${category.id}`">Open</NuxtLinkLocale>
     </div>
   </div>
 </template>

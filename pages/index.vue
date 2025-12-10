@@ -1,6 +1,5 @@
 <template>
   <div class="space-y-12">
-    <!-- Hero Section -->
     <section class="relative overflow-hidden rounded-2xl bg-gray-100 shadow-sm">
       <div class="relative h-[280px] sm:h-[340px]">
         <NuxtImg
@@ -9,7 +8,6 @@
           format="webp"
           alt="Kia / Hyundai VIN to PIN"
         />
-        <!-- Gradient Overlay: slight tint of brand color + black for readability -->
         <div class="absolute inset-0 bg-gradient-to-r from-[#0e5e6f]/80 via-black/40 to-transparent" />
 
         <div class="absolute inset-0 flex items-center">
@@ -30,12 +28,12 @@
                 </li>
               </ul>
               <div class="flex flex-wrap gap-3">
-                <NuxtLink to="/new-lookup" class="btn-brand">
+                <NuxtLinkLocale to="/new-lookup" class="btn-brand">
                   {{ $t('btn.newLookup') || 'New VIN Lookup' }}
-                </NuxtLink>
-                <NuxtLink to="/buy" class="btn-brand-ghost">
+                </NuxtLinkLocale>
+                <NuxtLinkLocale to="/buy" class="btn-brand-ghost">
                   {{ $t('btn.buyTokens') || 'Buy Tokens' }}
-                </NuxtLink>
+                </NuxtLinkLocale>
               </div>
             </div>
           </div>
@@ -43,7 +41,6 @@
       </div>
     </section>
 
-    <!-- Supported Brands Slider -->
     <section class="space-y-6">
       <div class="text-center">
         <h2 class="text-2xl sm:text-2xl font-bold tracking-tight text-gray-900">
@@ -52,17 +49,28 @@
         <div class="h-1 w-20 bg-gradient-to-r from-[#0e5e6f] to-[#3adbc4] mx-auto mt-2 rounded-full"></div>
       </div>
 
-      <div class="relative group">
-        <!-- Optional fading edges for slider -->
-        <div class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-        <div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+      <div class="relative group w-full overflow-hidden bg-white py-4">
+        <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
-        <div
-          ref="brandRail"
-          class="overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] py-2"
-        >
-          <div class="flex justify-center gap-8 min-w-max px-4">
-            <div v-for="b in brands" :key="b.key" class="brand-pill group hover:border-[#3adbc4]/50 transition-colors duration-300">
+        <div class="flex w-max animate-marquee hover:[animation-play-state:paused]">
+          <div class="flex gap-8 px-4">
+            <div v-for="b in brands" :key="'set1-' + b.key" class="brand-pill group hover:border-[#3adbc4]/50 transition-colors duration-300">
+              <NuxtImg
+                v-if="b.logo"
+                :src="b.logo"
+                :alt="b.name"
+                format="webp"
+                class="h-8 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100"
+              />
+              <span v-else class="text-lg font-bold tracking-wide text-gray-600 group-hover:text-[#0e5e6f]">
+                {{ b.name }}
+              </span>
+            </div>
+          </div>
+
+          <div class="flex gap-8 px-4">
+            <div v-for="b in brands" :key="'set2-' + b.key" class="brand-pill group hover:border-[#3adbc4]/50 transition-colors duration-300">
               <NuxtImg
                 v-if="b.logo"
                 :src="b.logo"
@@ -79,9 +87,7 @@
       </div>
     </section>
 
-    <!-- Token Packs -->
-    <section v-if="allPacks.length" class="space-y-6">
-      <!-- Centered Header -->
+    <section v-if="allPacks.length" class="space-y-6 relative">
       <div class="text-center border-b pb-4 border-gray-100 mb-6">
         <h3 class="text-2xl font-bold text-gray-900">
           {{ $t('home.tokenPacks') || 'Token Packs' }}
@@ -89,152 +95,116 @@
         <div class="h-1 w-20 bg-gradient-to-r from-[#0e5e6f] to-[#3adbc4] mx-auto mt-2 rounded-full"></div>
       </div>
 
-      <!-- 
-        MOBILE LAYOUT: Flex Slider, Items are 50% width approx to show 2 per row.
-        DESKTOP LAYOUT: Standard Grid
-      -->
-      <div class="flex overflow-x-auto snap-x gap-4 pb-4 px-1 sm:grid sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto scrollbar-hide">
-        <article
-          v-for="p in allPacks"
-          :key="p.id"
-          class="pack-card flex flex-col relative group shrink-0 min-w-[calc(50%-8px)] sm:min-w-0 snap-center"
+      <div class="relative group/slider">
+        <button 
+          @click="scrollPacks('left')" 
+          class="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/90 shadow-md border border-gray-100 text-gray-600 hover:text-[#0e5e6f] hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 sm:opacity-100"
+          aria-label="Scroll left"
         >
-          <!-- FULL CARD LINK (behind content) -->
-          <NuxtLink
-            :to="`/product/${p.slug || p.id}`"
-            class="absolute inset-0 z-0"
-            :aria-label="`Open ${p.name}`"
-          />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
 
-          <!-- Header -->
-          <header class="pack-card__header z-10 flex items-center justify-center min-h-[50px]">
-            <!-- explicit title link -->
-            <NuxtLink
+        <button 
+          @click="scrollPacks('right')" 
+          class="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/90 shadow-md border border-gray-100 text-gray-600 hover:text-[#0e5e6f] hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 sm:opacity-100"
+          aria-label="Scroll right"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+
+        <div 
+          ref="packsRail" 
+          class="flex overflow-x-auto snap-x gap-4 pb-4 px-4 sm:grid sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto scrollbar-hide"
+        >
+          <article
+            v-for="p in allPacks"
+            :key="p.id"
+            class="pack-card flex flex-col relative group shrink-0 min-w-[260px] sm:min-w-0 snap-center"
+          >
+            <NuxtLinkLocale
               :to="`/product/${p.slug || p.id}`"
-              class="block z-20 relative text-center w-full"
-              @click.stop
-            >
-              <!-- Full visible title, no truncation -->
-              <h4 class="text-xs sm:text-base font-bold tracking-tight text-white leading-snug group-hover:text-[#3adbc4] transition-colors whitespace-normal break-words">
-                {{ p.name }}
-              </h4>
-            </NuxtLink>
-          </header>
+              class="absolute inset-0 z-0"
+              :aria-label="`Open ${p.name}`"
+            />
 
-          <!-- Body -->
-          <div class="pack-card__body flex-1 flex flex-col z-10 bg-white">
-            <div class="text-center mt-1">
-              <span class="inline-block bg-gray-100 text-[#0e5e6f] px-2 py-0.5 rounded-full text-xs font-bold">
-                {{ p.tokens }} {{ $t('tokens') || 'tokens' }}
-              </span>
-            </div>
+            <header class="pack-card__header z-10 flex items-center justify-center min-h-[56px]">
+              <NuxtLinkLocale
+                :to="`/product/${p.slug || p.id}`"
+                class="block z-20 relative text-center w-full"
+                @click.stop
+              >
+                <h4 class="text-sm sm:text-base font-bold tracking-tight text-white leading-snug group-hover:text-[#3adbc4] transition-colors">
+                  {{ p.name }}
+                </h4>
+              </NuxtLinkLocale>
+            </header>
 
-            <!-- explicit image link -->
-            <NuxtLink
-              v-if="p.image_url"
-              :to="`/product/${p.slug || p.id}`"
-              class="block z-20 relative mx-auto w-full px-2"
-              @click.stop
-            >
-              <NuxtImg
-                :src="p.image_url"
-                format="webp"
-                class="pack-image hover:scale-105 transition-transform duration-300 border border-gray-200"
-                :modifiers="{ fit: 'contain', background: 'white' }"
-                alt=""
-              />
-            </NuxtLink>
+            <div class="pack-card__body flex-1 flex flex-col z-10 bg-white">
+              <div class="text-center mt-2">
+                <span class="inline-block bg-gray-100 text-[#0e5e6f] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                  {{ p.tokens }} {{ $t('tokens') || 'TOKENS' }}
+                </span>
+              </div>
 
-            <p v-if="p.sku" class="text-[#0e5e6f] text-center font-semibold text-[10px] tracking-wider uppercase mb-1">
-              SKU: {{ p.sku }}
-            </p>
-
-            <!-- Tier table -->
-            <div
-              v-if="p.pricing_tiers?.length"
-              class="tier-box mb-2 shadow-inner"
-              @click.stop
-            >
-              <table class="tier-table">
-                <thead>
-                  <tr>
-                    <!-- UPDATED: Conditional alignment for AR locale -->
-                    <th 
-                      class="bg-gray-50 text-gray-500" 
-                      :class="locale === 'ar' ? 'text-right' : 'text-left'"
-                    >
-                      {{ $t('common.quantity') || 'Qty' }}
-                    </th>
-                    <th class="text-right bg-gray-50 text-gray-500">{{ $t('common.price') || 'Price' }}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    v-for="(r, i) in normalizedTiers(p)"
-                    :key="i"
-                    :class="[
-                      i === activeTierIndex(p, qty[p.id]) ? 'tier-row--active' : 'hover:bg-gray-50',
-                    ]"
-                    class="transition-colors duration-200"
-                  >
-                    <td class="font-medium">
-                      <span v-if="r.max_qty">{{ r.min_qty }}–{{ r.max_qty }}</span>
-                      <span v-else>{{ r.min_qty }}+</span>
-                    </td>
-                    <td class="text-right">
-                      <template v-if="r.sale_price_usd">
-                        <span class="font-bold text-[#e63946]">
-                          ${{ Number(r.sale_price_usd).toFixed(2) }}
-                        </span>
-                      </template>
-                      <template v-else>
-                        <span class="font-semibold text-gray-700">
-                          ${{ Number(r.price_usd).toFixed(2) }}
-                        </span>
-                      </template>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <!-- Big price -->
-            <div class="text-center mb-3">
-              <template v-if="currentStrikePrice(p, qty[p.id])">
-                <div class="text-lg sm:text-xl font-black text-gray-900 leading-none">
-                  ${{ currentUnitPrice(p, qty[p.id]).toFixed(2) }}
-                </div>
-                <div class="text-[10px] text-gray-400 line-through mt-0.5 font-medium">
-                  was ${{ currentStrikePrice(p, qty[p.id])!.toFixed(2) }}
-                </div>
-              </template>
-              <template v-else>
-                <div class="text-lg sm:text-xl font-black text-[#0e5e6f] leading-none">
-                  ${{ currentUnitPrice(p, qty[p.id]).toFixed(2) }}
-                </div>
-              </template>
-            </div>
-
-            <!-- CTA bottom -->
-            <div class="mt-auto pt-2 border-t border-gray-100" @click.stop>
-              <div class="flex items-center gap-2">
-                <input
-                  v-model.number="qty[p.id]"
-                  type="number"
-                  min="1"
-                  class="w-12 sm:w-14 rounded-lg border border-gray-300 px-1 py-1.5 text-center text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-[#3adbc4] focus:border-[#3adbc4] outline-none transition-all"
-                  @click.stop
+              <NuxtLink
+                v-if="p.image_url"
+                :to="`/product/${p.slug || p.id}`"
+                class="block z-20 relative mx-auto w-full px-4 py-4"
+                @click.stop
+              >
+                <NuxtImg
+                  :src="p.image_url"
+                  format="webp"
+                  class="pack-image h-48 sm:h-56 w-full object-contain mx-auto transition-transform duration-300 group-hover:scale-105 border border-gray-100 bg-white rounded-xl"
+                  :modifiers="{ fit: 'contain', background: 'white' }"
+                  alt=""
                 />
-                <button
-                  class="btn-brand w-full text-xs sm:text-sm py-2"
-                  @click.stop="addToCartCard(p)"
-                >
-                  {{ $t('btn.addToCart') || 'Add' }}
-                </button>
+              </NuxtLink>
+
+              <p v-if="p.sku" class="text-gray-400 text-center font-medium text-[10px] tracking-wider uppercase mb-2">
+                SKU: {{ p.sku }}
+              </p>
+
+              <div class="text-center mb-4">
+                <template v-if="currentStrikePrice(p, qty[p.id])">
+                  <div class="text-xl sm:text-2xl font-black text-gray-900 leading-none">
+                    ${{ currentUnitPrice(p, qty[p.id]).toFixed(2) }}
+                  </div>
+                  <div class="text-xs text-[#e63946] line-through mt-1 font-semibold">
+                    ${{ currentStrikePrice(p, qty[p.id])!.toFixed(2) }}
+                  </div>
+                </template>
+                <template v-else>
+                  <div class="text-xl sm:text-2xl font-black text-[#0e5e6f] leading-none">
+                    ${{ currentUnitPrice(p, qty[p.id]).toFixed(2) }}
+                  </div>
+                </template>
+              </div>
+
+              <div class="mt-auto pt-4 border-t border-gray-100" @click.stop>
+                <div class="flex items-center gap-3">
+                  <input
+                    v-model.number="qty[p.id]"
+                    type="number"
+                    min="1"
+                    class="w-14 rounded-xl border border-gray-200 bg-gray-50 px-1 py-2 text-center text-sm font-bold focus:ring-2 focus:ring-[#3adbc4] focus:border-[#3adbc4] outline-none transition-all"
+                    @click.stop
+                  />
+                  <button
+                    class="btn-brand w-full text-sm py-2.5"
+                    @click.stop="addToCartCard(p)"
+                  >
+                    {{ $t('btn.addToCart') || 'Add to Cart' }}
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -245,6 +215,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed, reactive, watch, watchEffect } from 'vue'
+
 type PricingTier = {
   min_qty: number
   max_qty?: number | null
@@ -269,22 +241,12 @@ const { locale, t } = useI18n()
 const cart = useCart()
 const { show } = useAddedToast()
 const qty = reactive<Record<number, number>>({})
+const packsRail = ref<HTMLDivElement | null>(null)
 
 function normalizedTiers(p: TokenPack): PricingTier[] {
   return (p.pricing_tiers || [])
     .slice()
     .sort((a, b) => (a.min_qty || 1) - (b.min_qty || 1))
-}
-
-function activeTierIndex(p: TokenPack, qtyNum?: number): number {
-  const q = Math.max(1, Number(qtyNum || 1))
-  const tiers = normalizedTiers(p)
-  for (let i = 0; i < tiers.length; i++) {
-    const tr = tiers[i]
-    const max = tr.max_qty ?? Number.POSITIVE_INFINITY
-    if (q >= (tr.min_qty || 1) && q <= max) return i
-  }
-  return -1
 }
 
 function currentUnitPrice(p: TokenPack, qtyNum?: number): number {
@@ -365,13 +327,28 @@ const errorMsg = computed(() => {
   return e?.statusMessage || e?.message || ''
 })
 
+// Corrected unique keys for brands to prevent Vue errors
 const brands = [
   { key: 'kia', name: 'KIA', logo: '/img/brands/kia.svg' },
   { key: 'hyundai', name: 'HYUNDAI', logo: '/img/brands/hyundai.svg' },
-  // { key: 'toyota', name: 'TOYOTA', logo: '/img/brands/toyota.svg' },
+  { key: 'toyota', name: 'Toyota', logo: '/img/brands/toyota.svg' },
+  { key: 'lexus', name: 'Lexus', logo: '/img/brands/Lexus.svg' },
+  { key: 'mg', name: 'MG', logo: '/img/brands/mg.svg' },
+  { key: 'changan', name: 'Changan', logo: '/img/brands/changan.svg' },
+  { key: 'chery', name: 'Chery', logo: '/img/brands/chery.svg' },
+  { key: 'haval', name: 'Haval', logo: '/img/brands/haval.webp' },
 ]
 
-const brandRail = ref<HTMLDivElement | null>(null)
+function scrollPacks(direction: 'left' | 'right') {
+  if (packsRail.value) {
+    // Scroll by the width of one card (~280px)
+    const scrollAmount = 280;
+    packsRail.value.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
+  }
+}
 
 useHead({
   title: t('seo.title') || 'Immobilizer PIN Code Calculator',
@@ -380,9 +357,19 @@ useHead({
 </script>
 
 <style scoped>
-/* --- BRAND GRADIENT & BUTTONS --- */
+/* --- ANIMATIONS --- */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
-/* Primary Button: Gradient Background */
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+  /* Width must be large enough to hold double the content */
+  width: max-content;
+}
+
+/* --- BRAND GRADIENT & BUTTONS --- */
 .btn-brand {
   @apply inline-flex items-center justify-center rounded-xl text-white px-5 py-2.5 font-bold shadow-md transition-all duration-200 transform;
   background-image: linear-gradient(135deg, #0e5e6f 0%, #3adbc4 100%);
@@ -394,7 +381,6 @@ useHead({
   @apply scale-95 opacity-100 translate-y-0;
 }
 
-/* Secondary/Ghost Button: White bg, Brand Border & Text */
 .btn-brand-ghost {
   @apply inline-flex items-center justify-center rounded-xl bg-white border border-[#0e5e6f]/30 text-[#0e5e6f] px-5 py-2.5 font-bold shadow-sm transition-all duration-200;
 }
@@ -415,42 +401,15 @@ useHead({
   @apply shadow-xl border-[#3adbc4]/50 -translate-y-1;
 }
 
-/* Reduced padding for compact header */
 .pack-card__header {
-  @apply px-3 py-2 bg-[#0e5e6f]; 
+  @apply px-4 py-3 bg-[#0e5e6f]; 
 }
 
-/* Reduced padding and gap for compact body */
 .pack-card__body {
-  @apply px-3 py-3 gap-1;
+  @apply px-4 py-4 gap-2;
 }
 
-/* Compact Image styling: max-height reduced to 140px for mobile balance */
-.pack-image {
-  @apply w-full rounded-xl p-1 mt-1 mb-1 object-contain bg-white;
-}
-
-/* --- TIER TABLE --- */
-.tier-box {
-  @apply border border-gray-100 rounded-xl overflow-hidden bg-white;
-}
-.tier-table {
-  @apply w-full text-xs;
-}
-.tier-table thead th {
-  @apply px-2 py-1.5 font-semibold uppercase tracking-wider text-[10px];
-}
-.tier-table tbody td {
-  @apply px-2 py-1.5 border-t border-gray-50 text-gray-700;
-}
-
-/* Active row styling using brand colors */
-.tier-row--active td {
-  @apply bg-[#f0fdfc] !important; /* Very light teal bg */
-  @apply text-[#0e5e6f] font-bold border-t-[#3adbc4]/30;
-}
-
-/* Hide scrollbar for slider but allow function */
+/* Scrollbar Hide */
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
