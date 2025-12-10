@@ -122,36 +122,6 @@
                       <div class="text-sm text-gray-600 mt-0.5">
                         {{ t('checkout.methods.usdt.desc') || 'Send USDT to our wallet and verify via WhatsApp.' }}
                       </div>
-
-                      <div
-                        v-if="form.payment_method === 'usdt'"
-                        class="mt-3 p-3 rounded-lg bg-white border border-gray-200 space-y-2 text-sm"
-                      >
-                        <div class="font-semibold text-[#0e5e6f]">
-                          {{ t('checkout.methods.usdt.walletLabel') || 'Wallet Address (TRC20)' }}
-                        </div>
-
-                        <div class="flex items-center gap-2">
-                          <code class="flex-1 bg-gray-50 px-2 py-1.5 rounded border border-gray-100 text-xs text-gray-600 break-all font-mono">
-                            {{ usdtWallet || 'USDT_WALLET_ADDRESS_MISSING' }}
-                          </code>
-
-                          <button
-                            type="button"
-                            class="inline-flex items-center rounded-md border border-gray-200 bg-white px-2.5 py-1.5 text-xs font-bold hover:bg-gray-50 hover:text-[#0e5e6f] transition-colors"
-                            @click.stop="copyWallet"
-                          >
-                            <span v-if="copiedWallet" class="text-emerald-600 flex items-center gap-1">
-                              <span class="text-lg">✔</span> {{ t('checkout.copied') || 'Copied' }}
-                            </span>
-                            <span v-else>{{ t('checkout.copy') || 'Copy' }}</span>
-                          </button>
-                        </div>
-
-                        <div class="text-xs text-gray-500 leading-relaxed">
-                          {{ t('checkout.methods.usdt.afterPayment') || 'After transfer, please send screenshot to WhatsApp support.' }}
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </label>
@@ -258,9 +228,6 @@
               <div v-if="errorMsg" class="rounded-xl bg-red-50 px-4 py-3 text-xs font-medium text-red-700 border border-red-100">
                 {{ errorMsg }}
               </div>
-              <div v-if="successMsg" class="rounded-xl bg-emerald-50 px-4 py-3 text-xs font-medium text-emerald-700 border border-emerald-100">
-                {{ successMsg }}
-              </div>
 
               <button
                 type="button"
@@ -287,18 +254,33 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const cart = useCart()
-const router = useRouter()
 const { $api } = useNuxtApp()
+const localePath = useLocalePath()
 const auth = (typeof useAuth === 'function' ? useAuth() : null) as any
 
 const user = computed(() => auth?.user?.value)
 const userEmail = computed(() => (user.value as any)?.email || '')
 
 const runtimeConfig = useRuntimeConfig()
-const usdtWallet = computed(() => runtimeConfig.public?.usdtWallet || '')
-const whatsappNumber = computed(() => runtimeConfig.public?.whatsappNumber || '')
 
-/** Normalize cart items */
+// --- 1. DEFINE FORM FIRST (So the watcher can access it) ---
+const form = reactive({
+  full_name: '',
+  company: '',
+  vat_number: '',
+  notes: '',
+  payment_method: '' as '' | 'paypal' | 'usdt' | 'transfer',
+  accept_terms: false,
+})
+
+// --- 2. WATCH USER DATA (Runs immediately) ---
+watch(user, (u: any) => {
+  if (u && !form.full_name) {
+    form.full_name = u.name || [u.first_name, u.last_name].filter(Boolean).join(' ') || ''
+  }
+}, { immediate: true })
+
+// --- 3. COMPUTED & HELPERS ---
 const itemsRef = computed<any[]>(() => {
   const raw = (cart as any)?.items
   if (Array.isArray(raw?.value)) return raw.value as any[]
@@ -307,7 +289,6 @@ const itemsRef = computed<any[]>(() => {
 })
 const itemsLen = computed(() => itemsRef.value.length)
 
-/** Summary */
 const subtotal = computed(() =>
   itemsRef.value.reduce(
     (sum, i: any) => sum + Number(i?.price || 0) * Number(i?.qty || 0),
@@ -318,49 +299,12 @@ const subtotal = computed(() =>
 const price = (n: number | string) => Number(n || 0).toFixed(2)
 const lineTotal = (it: any) => Number(it?.price || 0) * Number(it?.qty || 0)
 
-/** cart row key */
-const cartId = (it: any) =>
-  it?.id ?? `${it?.product_type}:${it?.product_id}` 
+const cartId = (it: any) => it?.id ?? `${it?.product_type}:${it?.product_id}` 
 const rowKey = (it: any) => String(cartId(it))
-
-/** Form + submit */
-const form = reactive({
-  full_name: '',
-  company: '',
-  vat_number: '',
-  notes: '',
-  payment_method: '' as '' | 'paypal' | 'usdt' | 'transfer',
-  accept_terms: false,
-})
-
-onMounted(() => {
-  if (user.value) {
-    const u: any = user.value
-    form.full_name =
-      u.name || [u.first_name, u.last_name].filter(Boolean).join(' ') || ''
-  }
-})
 
 const placing = ref(false)
 const errorMsg = ref('')
-const successMsg = ref('')
 
-/** Copy wallet */
-const copiedWallet = ref(false)
-async function copyWallet() {
-  if (!usdtWallet.value) return
-  try {
-    await navigator.clipboard.writeText(usdtWallet.value)
-    copiedWallet.value = true
-    setTimeout(() => {
-      copiedWallet.value = false
-    }, 2000)
-  } catch (e) {
-    console.error('Failed to copy wallet address', e)
-  }
-}
-
-/** canSubmit: controls disabled state of button */
 const canSubmit = computed(() => {
   return (
     !!form.full_name &&
@@ -372,12 +316,12 @@ const canSubmit = computed(() => {
   )
 })
 
+// --- 4. SUBMIT FUNCTION ---
 async function placeOrder() {
   if (!canSubmit.value) return
 
   placing.value = true
   errorMsg.value = ''
-  successMsg.value = ''
 
   try {
     const payload = {
@@ -402,17 +346,23 @@ async function placeOrder() {
     })
 
     if (form.payment_method === 'paypal') {
-      successMsg.value = t('checkout.successPaypal') || 'Redirecting to PayPal...'
       if (res?.paypal_invoice_url) {
         window.location.href = res.paypal_invoice_url
       } else {
-        successMsg.value = t('checkout.successPaypalNoUrl') || 'Invoice sent to email.'
+        errorMsg.value = 'Invoice generated but URL missing.'
       }
-    }
-    else if (form.payment_method === 'usdt') {
-      successMsg.value = t('checkout.successUsdt') || 'Order created. Please send USDT proof.'
     } else {
-      successMsg.value = t('checkout.successTransfer') || 'Order created. Transfer details sent.'
+      // ✅ Redirect with UUID
+      await navigateTo(localePath({
+        path: '/checkout/success',
+        query: {
+          order_id: res.uuid || res.id,
+          method: form.payment_method,
+          amount: subtotal.value
+        }
+      }))
+      
+      if (typeof (cart as any).clear === 'function') (cart as any).clear()
     }
 
   } catch (e: any) {
@@ -422,10 +372,24 @@ async function placeOrder() {
     placing.value = false
   }
 }
-</script>
 
+// Copy wallet helper for template
+const usdtWallet = computed(() => runtimeConfig.public?.usdtWallet || '')
+const copiedWallet = ref(false)
+async function copyWallet() {
+  if (!usdtWallet.value) return
+  try {
+    await navigator.clipboard.writeText(usdtWallet.value)
+    copiedWallet.value = true
+    setTimeout(() => {
+      copiedWallet.value = false
+    }, 2000)
+  } catch (e) {
+    console.error('Failed to copy wallet address', e)
+  }
+}
+</script>
 <style scoped>
-/* Brand Gradient Button */
 .btn {
   @apply inline-flex items-center justify-center rounded-xl text-white px-5 py-3 font-bold shadow-md transition-all duration-200 transform;
   background-image: linear-gradient(135deg, #0e5e6f 0%, #3adbc4 100%);
@@ -433,14 +397,12 @@ async function placeOrder() {
 .btn:hover { @apply shadow-lg opacity-95 -translate-y-0.5; }
 .btn:disabled { @apply opacity-60 cursor-not-allowed transform-none; }
 
-/* Brand Input */
 .input {
   @apply w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[#3adbc4] focus:border-[#3adbc4] transition-all;
 }
 
 .tabular-nums { font-variant-numeric: tabular-nums; }
 
-/* Custom Scrollbar for summary list */
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
 }

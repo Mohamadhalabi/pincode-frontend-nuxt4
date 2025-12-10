@@ -35,6 +35,7 @@
   },
 
   "common": {
+    "returnHome": "Return to Home",
     "required_info": "Required Inputs",
     "price" : "Price",
     "quantity" : "Quantity",
@@ -437,6 +438,7 @@
       "fillRequired" : "Fill Required"
     },
     "btn" :{
+      "whatsappProof" : "Whatsapp Proof",
       "buyNow": "Buy Now",
       "orderWhatsApp" : "Order On Whatsapp",
           "buyTokens": "Buy Tokens",
@@ -464,6 +466,15 @@
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions",
     "rights": "All Rights Reserved."
+  },
+  "success": {
+    "title": "Order Placed Successfully!",
+    "orderRef": "Your order reference is:",
+    "usdtTitle": "Complete your USDT Payment",
+    "usdtDesc": "Please transfer the total amount to the TRC20 wallet address below.",
+    "walletLabel": "USDT (TRC20) Address",
+    "transferTitle": "Bank / Western Union Transfer",
+    "transferDesc": "We have received your order. Please contact us via WhatsApp to receive the banking details to complete your payment."
   }
 
 }
