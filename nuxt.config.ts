@@ -5,6 +5,8 @@ const vueI18nConfigPath = fileURLToPath(new URL('./i18n.config.ts', import.meta.
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-11-05',
+  devServer: { host: '127.0.0.1', port: 3000 },
+  ssr: true,
 
   modules: [
     '@pinia/nuxt',
