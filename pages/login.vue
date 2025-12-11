@@ -40,7 +40,9 @@ async function submitLogin() {
     await cart.afterAuthSync()
     router.push('/')
   } catch (e:any) {
-    errLogin.value = e?.data?.message || e?.message || 'Login failed'
+    // UPDATED LINE BELOW:
+    // Check for e.data.error.message first, based on your API structure
+    errLogin.value = e?.data?.error?.message || e?.data?.message || e?.message || 'Login failed'
   } finally {
     loadingLogin.value = false
   }
@@ -48,24 +50,44 @@ async function submitLogin() {
 
 async function submitRegister() {
   errRegister.value = null
+  
+  // 1. Client-side validation
   if (regForm.password !== regForm.password_confirmation) {
     errRegister.value = (t('auth.passwordsNotMatch') as string) || 'Passwords do not match'
     return
   }
+
   loadingRegister.value = true
+
   try {
+    // 2. Attempt registration
     if (auth && typeof auth.register === 'function') {
+      // Use auth module if available
       await auth.register({ ...regForm, device: 'web' })
     } else {
+      // Manual API call fallback
       await $api('/auth/register', { method: 'POST', body: { ...regForm, device: 'web' } })
+      
+      // Auto-login after manual registration if supported
       if (auth && typeof auth.login === 'function') {
         await auth.login(regForm.email, regForm.password)
       }
     }
+
+    // 3. Post-registration actions
     await mergeGuestCartToServer()
     router.push('/')
-  } catch (e:any) {
-    errRegister.value = e?.data?.message || e?.message || (t('auth.registerFailed') as string) || 'Registration failed'
+
+  } catch (e: any) {
+    // FIX APPLIED HERE:
+    // We check e.data.error.message first because your backend nests the message inside an 'error' object
+    errRegister.value = 
+      e?.data?.error?.message || 
+      e?.data?.message || 
+      e?.message || 
+      (t('auth.registerFailed') as string) || 
+      'Registration failed'
+      
   } finally {
     loadingRegister.value = false
   }
