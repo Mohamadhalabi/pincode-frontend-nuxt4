@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   // We hardcode the production URL here to ensure Canonical/Hreflang 
   // are generated correctly even when you are testing on Localhost.
   site: {
-    url: 'https://4pincode.com',
+    url: 'https://www.4pincode.com',
     name: '4PinCode',
   },
 
@@ -36,13 +36,13 @@ export default defineNuxtConfig({
   },
 
   // ✅ 2. I18N CONFIG (Fixes Hreflangs)
-  i18n: {
-    // This MUST be the real domain for SEO tools to accept it
-    baseUrl: 'https://4pincode.com', 
+i18n: {
+    baseUrl: 'https://www.4pincode.com', 
     vueI18n: vueI18nConfigPath,
     locales: [
-      { code: 'en', iso: 'en-US', name: 'English', dir: 'ltr' },
-      { code: 'ar', iso: 'ar-AE', name: 'العربية', dir: 'rtl' } 
+      // CHANGE 'iso' to match the simple code if you want hreflang="en"
+      { code: 'en', iso: 'en', name: 'English', dir: 'ltr' },
+      { code: 'ar', iso: 'ar', name: 'العربية', dir: 'rtl' } 
     ],
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
@@ -51,6 +51,7 @@ export default defineNuxtConfig({
       cookieKey: 'i18n_redirected',
       redirectOn: 'root'
     },
+    // This tells the module: "You handle the SEO tags, I won't do it manually"
     bundle: { optimizeTranslationDirective: false }
   },
 

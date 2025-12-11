@@ -25,9 +25,10 @@
   "tokens.bullets.4": "No renewal fees. Tokens never expire.",
   "tokens.bestValue": "Best value",
   "tokens.buyNow": "Buy Now",
-  "seo.title": "Immobilizer PIN Code Calculator — Fast VIN to PIN & Token Packs",
-  "seo.desc": "Buy tokens, run VIN→PIN lookups, and access calculators. Fast, SEO-friendly PIN code services with instant results and no renewal fees.",
-
+  "seo": {
+      "title": "VIN to PIN Calculator | Immobilizer Pincodes & Key Programming",
+      "desc": "Instant VIN to Pincode lookup for Kia, Hyundai, Toyota, and Chinese cars. Professional immobilizer calculator for locksmiths. Fast results with no subscription fees."
+    },
   "home": {
     "categories": "Categories",
     "tokenPacks": "Token Packs",
@@ -78,17 +79,19 @@
 
   "nav": {
     "tokens" : "Tokens",
-    "calculators" : "Calculators",
-    "categories": "Categories",
-    "lookups": "My Lookups",
-    "openMenu": "Open menu",
-    "kia_before": "Kia / Hyundai VIN to PIN (before 2017)",
-    "kia_after": "Kia / Hyundai VIN to PIN (2017 and after)",
-    "account": "Account",
-    "buyKiaOld": "Old Kia / Hyundai Tokens",
-    "buyKiaNew": "New Kia / Hyundai Tokens",
-    "calcKiaOld": "Old Kia / Hyundai Calculator",
-    "calcKiaNew": "New Kia / Hyundai Calculator"
+      "calculators" : "Calculators",
+      "categories": "Categories",
+      "lookups": "My Lookups",
+      "openMenu": "Open menu",
+      "kia_before": "Kia / Hyundai VIN to PIN (before 2017)",
+      "kia_after": "Kia / Hyundai VIN to PIN (2017 and after)",
+      "account": "Account",
+      "buyKiaOld": "Old Kia / Hyundai Tokens",
+      "buyKiaNew": "New Kia / Hyundai Tokens",
+      "buyToyota": "Toyota / Lexus Passcode",
+      "buyChinese": "Chinese Cars Pincode",
+      "calcKiaOld": "Old Kia / Hyundai Calculator",
+      "calcKiaNew": "New Kia / Hyundai Calculator"
   },
 
   "cart": {
@@ -174,6 +177,7 @@
   "tokens": "tokens",
 
   "auth": {
+    "welcome": "Welcome",
     "logout" : "Logout",
     "account": "Your Account",
     "login": "Login",

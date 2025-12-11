@@ -8,6 +8,26 @@ const { t, locale } = i18n
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 
+/* -----------------------------------------------------------
+   ✅ SEO INJECTION (Fixes Missing Canonical / Hreflang)
+   ----------------------------------------------------------- */
+const head = useLocaleHead({
+  addDirAttribute: true,
+  identifierAttribute: 'id',
+  addSeoAttributes: true // This generates Canonical & Hreflang
+})
+
+useHead({
+  htmlAttrs: {
+    lang: () => head.value.htmlAttrs!.lang,
+    dir: () => head.value.htmlAttrs!.dir,
+  },
+  link: () => head.value.link, 
+  meta: () => head.value.meta
+})
+/* ----------------------------------------------------------- */
+
+
 /* --- Auth & User State --- */
 // Using 'as any' to bypass strict type checks if your auth composable isn't typed globally
 const auth = (typeof useAuth === 'function' ? useAuth() : null) as any
@@ -57,20 +77,6 @@ const localeCode = computed<string>(() => {
   const l: any = locale
   if (l && typeof l === 'object' && 'value' in l) return l.value
   return String(l)
-})
-
-const currentLocale = computed(() => 
-  safeLocales.value.find(l => l.code === localeCode.value) ?? { code: localeCode.value, dir: 'ltr' }
-)
-
-const dir = computed(() => currentLocale.value?.dir || 'ltr')
-
-// Set HTML attributes for SEO/Accessibility
-useHead({ 
-  htmlAttrs: { 
-    lang: () => localeCode.value, 
-    dir: () => dir.value 
-  } 
 })
 
 function setLocale(code: string) {
@@ -131,14 +137,10 @@ async function doLogout() {
         :locale="localeCode"
         :t="t"
         @home="go('/')"
-        @kia-before="go('/services/kia-hyundai-before-2017')"
-        @kia-after="go('/services/kia-hyundai-after-2017')"
         @login="go('/login')"
         @account="go('/account')"
         @cart="go('/cart')"
         @update:locale="(v: string) => setLocale(v)"
-        @productsOld="go('/product/kia-hyundai-pincode-old')"
-        @productsNew="go('/product/kia-hyundai-pincode-new')"
       />
 
       <HeaderMobile
@@ -165,7 +167,7 @@ async function doLogout() {
             {{ t('nav.tokens') || 'Tokens' }}
           </div>
 
-          <button class="drawer-btn" @click="mobileOpen=false; go('/product/kia-hyundai-pincode-old')">
+          <button class="drawer-btn group" @click="mobileOpen=false; go('/product/kia-hyundai-pincode-old')">
             <div class="drawer-icon-bg">
                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="9" cy="21" r="1" /> <circle cx="20" cy="21" r="1" /> <path d="M1 1h4l2.6 13.4a2 2 0 0 0 2 1.6h9.9a2 2 0 0 0 2-1.6L23 6H6" />
@@ -174,13 +176,31 @@ async function doLogout() {
             <span class="font-medium group-hover:text-[#0e5e6f]">{{ t('nav.buyKiaOld') || 'Old Kia / Hyundai Tokens' }}</span>
           </button>
 
-          <button class="drawer-btn" @click="mobileOpen=false; go('/product/kia-hyundai-pincode-new')">
+          <button class="drawer-btn group" @click="mobileOpen=false; go('/product/kia-hyundai-pincode-new')">
             <div class="drawer-icon-bg">
               <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="9" cy="21" r="1" /> <circle cx="20" cy="21" r="1" /> <path d="M1 1h4l2.6 13.4a2 2 0 0 0 2 1.6h9.9a2 2 0 0 0 2-1.6L23 6H6" />
               </svg>
             </div>
             <span class="font-medium group-hover:text-[#0e5e6f]">{{ t('nav.buyKiaNew') || 'New Kia / Hyundai Tokens' }}</span>
+          </button>
+          
+          <button class="drawer-btn group" @click="mobileOpen=false; go('/product/toyota-lexus-passcode')">
+            <div class="drawer-icon-bg">
+               <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
+              </svg>
+            </div>
+            <span class="font-medium group-hover:text-[#0e5e6f]">{{ t('nav.buyToyota') || 'Toyota / Lexus Passcode' }}</span>
+          </button>
+
+          <button class="drawer-btn group" @click="mobileOpen=false; go('/product/chinese-cars-pincode')">
+            <div class="drawer-icon-bg">
+               <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l9 4.9V17L12 22l-9-4.9V7z" />
+              </svg>
+            </div>
+            <span class="font-medium group-hover:text-[#0e5e6f]">{{ t('nav.buyChinese') || 'Chinese Cars Pincode' }}</span>
           </button>
 
           <div class="h-px bg-gray-100 my-2"></div>
@@ -189,7 +209,7 @@ async function doLogout() {
             {{ t('nav.calculators') || 'Calculators' }}
           </div>
 
-          <button class="drawer-btn" @click="mobileOpen=false; go('/services/kia-hyundai-before-2017')">
+          <button class="drawer-btn group" @click="mobileOpen=false; go('/services/kia-hyundai-before-2017')">
             <div class="drawer-icon-bg">
               <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="4" y="2" width="16" height="20" rx="2" /> <line x1="8" y1="6" x2="16" y2="6" /> <line x1="8" y1="10" x2="8" y2="10" /> <line x1="12" y1="10" x2="12" y2="10" /> <line x1="16" y1="10" x2="16" y2="10" /> <line x1="8" y1="14" x2="8" y2="14" /> <line x1="12" y1="14" x2="12" y2="14" /> <line x1="16" y1="14" x2="16" y2="14" /> <line x1="8" y1="18" x2="8" y2="18" /> <line x1="12" y1="18" x2="12" y2="18" /> <line x1="16" y1="18" x2="16" y2="18" />
@@ -198,7 +218,7 @@ async function doLogout() {
             <span class="font-medium group-hover:text-[#0e5e6f]">{{ t('nav.calcKiaOld') || 'Before 2017 Calculator' }}</span>
           </button>
 
-          <button class="drawer-btn" @click="mobileOpen=false; go('/services/kia-hyundai-after-2017')">
+          <button class="drawer-btn group" @click="mobileOpen=false; go('/services/kia-hyundai-after-2017')">
             <div class="drawer-icon-bg">
               <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="4" y="2" width="16" height="20" rx="2" /> <line x1="8" y1="6" x2="16" y2="6" /> <line x1="8" y1="10" x2="8" y2="10" /> <line x1="12" y1="10" x2="12" y2="10" /> <line x1="16" y1="10" x2="16" y2="10" /> <line x1="8" y1="14" x2="8" y2="14" /> <line x1="12" y1="14" x2="12" y2="14" /> <line x1="16" y1="14" x2="16" y2="14" /> <line x1="8" y1="18" x2="8" y2="18" /> <line x1="12" y1="18" x2="12" y2="18" /> <line x1="16" y1="18" x2="16" y2="18" />
@@ -275,8 +295,8 @@ async function doLogout() {
 }
 
 /* Utility classes to clean up template HTML */
+/* Note: 'group' is removed from @apply and added to HTML classes instead */
 .drawer-btn {
-  /* REMOVED 'group' from here */
   @apply w-full py-3 px-3 rounded-xl text-left hover:bg-[#f0fdfc] flex items-center gap-3 transition-colors;
 }
 
