@@ -9,7 +9,11 @@
   "hero.points.updates": "Lifetime Free Updates",
   "hero.points.free": "Access to Free Services",
   "hero.points.noRenewal": "No renewal fees · tokens never expire",
-  "hero.points.instant": "Instant calculation 24/7",
+  
+  "hero.points.instant": "Instant calculation 24/7 (Kia / Hyundai)",
+  "hero.points.toyota": "Toyota / Lexus Passcode",
+  "hero.points.chinese": "Chinese Cars Pincode (MG - Changan - Chery - Haval)",
+
   "btn.newLookup": "New VIN Lookup",
   "btn.buyTokens": "Buy Tokens",
   "section.offers.title": "Special Offers",
@@ -27,7 +31,7 @@
   "tokens.buyNow": "Buy Now",
   "seo": {
       "title": "VIN to PIN Calculator | Immobilizer Pincodes & Key Programming",
-      "desc": "Instant VIN to Pincode lookup for Kia, Hyundai, Toyota, and Chinese cars. Professional immobilizer calculator for locksmiths. Fast results with no subscription fees."
+      "desc": "Instant VIN to Pin / Vin to Pincode lookup for Kia, Hyundai, Toyota, and Chinese cars. Professional immobilizer calculator for locksmiths. Fast results with no subscription fees."
     },
   "home": {
     "categories": "Categories",
@@ -450,27 +454,25 @@
     },
 
   "footer": {
-    "questions": "Got questions? Call or WhatsApp us",
-    "contactInfo": "Contact Info",
-    "companyName": "4Pincode Services",
-    "location": "Sharjah – United Arab Emirates",
-    "quickLinks": "Quick Links",
-    "services": "Services",
-    "support": "Support",
-    "home": "Home",
-    "newLookup": "New VIN Lookup",
-    "buyTokens": "Buy Tokens",
-    "faq": "FAQ",
-    "kiaOld": "Kia / Hyundai (Old)",
-    "kiaNew": "Kia / Hyundai (New)",
-    "pricing": "Pricing Plans",
-    "apiDocs": "API Documentation",
-    "contactUs": "Contact Us",
-    "aboutUs": "About Us",
-    "privacy": "Privacy Policy",
-    "terms": "Terms & Conditions",
-    "rights": "All Rights Reserved."
-  },
+      "questions": "Got questions? Call or WhatsApp us",
+      "contactInfo": "Contact Info",
+      "companyName": "4Pincode Services",
+      "location": "Sharjah – United Arab Emirates",
+      "products": "Products",
+      "calculators": "Calculators",
+      "support": "Support",
+      "home": "Home",
+      "kiaOld": "Kia / Hyundai (Old)",
+      "kiaNew": "Kia / Hyundai (New)",
+      "toyota": "Toyota / Lexus Passcode",
+      "chineseCars": "Chinese Cars PIN Code",
+      "contactUs": "Contact Us",
+      "aboutUs": "About Us",
+      "privacy": "Privacy Policy",
+      "terms": "Terms & Conditions",
+      "faq": "FAQ",
+      "rights": "All Rights Reserved."
+    },
   "success": {
     "title": "Order Placed Successfully!",
     "orderRef": "Your order reference is:",

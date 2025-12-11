@@ -19,54 +19,58 @@
               {{ $t('footer.questions') }}
             </p>
             <a href="tel:+447414902439" class="text-xl font-bold text-[#0e5e6f] hover:text-[#3adbc4] transition-colors" dir="ltr">
-              +447414902439
+              +44 7414 902439
             </a>
           </div>
 
           <div class="text-sm text-gray-600 space-y-1">
             <p class="font-semibold text-gray-900">{{ $t('footer.contactInfo') }}</p>
             <p>{{ $t('footer.companyName') }}</p>
-            <!-- <p>{{ $t('footer.location') }}</p> -->
             <a href="mailto:support@4pincode.com" class="text-[#0e5e6f] hover:text-[#3adbc4] transition-colors font-medium">
               support@4pincode.com
             </a>
           </div>
 
           <div class="flex items-center gap-4">
-            <!-- <a href="#" class="social-icon" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
-            <a href="#" class="social-icon" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
-            <a href="#" class="social-icon" aria-label="YouTube"><i class="ri-youtube-fill"></i></a> -->
-            <a href="#" class="social-icon" aria-label="WhatsApp"><i class="ri-whatsapp-line"></i></a>
+            <a 
+              href="https://wa.me/447414902439" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="social-icon" 
+              aria-label="WhatsApp"
+            >
+              <i class="ri-whatsapp-line"></i>
+            </a>
           </div>
         </div>
 
         <div>
-          <h4 class="font-bold text-[#0e5e6f] text-lg mb-5">{{ $t('footer.quickLinks') }}</h4>
+          <h4 class="font-bold text-[#0e5e6f] text-lg mb-5">{{ $t('footer.products') }}</h4>
           <ul class="space-y-3 text-sm font-medium text-gray-600">
-            <li><NuxtLinkLocale to="/" class="footer-link">{{ $t('footer.home') }}</NuxtLinkLocale></li>
-            <li><NuxtLinkLocale to="/lookup" class="footer-link">{{ $t('footer.newLookup') }}</NuxtLinkLocale></li>
-            <li><NuxtLinkLocale to="/buy" class="footer-link">{{ $t('footer.buyTokens') }}</NuxtLinkLocale></li>
-            <li><NuxtLinkLocale to="/faq" class="footer-link">{{ $t('footer.faq') }}</NuxtLinkLocale></li>
+            <li><NuxtLinkLocale to="/product/kia-hyundai-pincode-old" class="footer-link">{{ $t('footer.kiaOld') }}</NuxtLinkLocale></li>
+            <li><NuxtLinkLocale to="/product/kia-hyundai-pincode-new" class="footer-link">{{ $t('footer.kiaNew') }}</NuxtLinkLocale></li>
+            <li><NuxtLinkLocale to="/product/toyota-lexus-passcode" class="footer-link">{{ $t('footer.toyota') }}</NuxtLinkLocale></li>
+            <li><NuxtLinkLocale to="/product/chinese-cars-pincode" class="footer-link">{{ $t('footer.chineseCars') }}</NuxtLinkLocale></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="font-bold text-[#0e5e6f] text-lg mb-5">{{ $t('footer.services') }}</h4>
+          <h4 class="font-bold text-[#0e5e6f] text-lg mb-5">{{ $t('footer.calculators') }}</h4>
           <ul class="space-y-3 text-sm font-medium text-gray-600">
             <li><NuxtLinkLocale to="/services/kia-hyundai-before-2017" class="footer-link">{{ $t('footer.kiaOld') }}</NuxtLinkLocale></li>
             <li><NuxtLinkLocale to="/services/kia-hyundai-after-2017" class="footer-link">{{ $t('footer.kiaNew') }}</NuxtLinkLocale></li>
-            <li><NuxtLinkLocale to="/pricing" class="footer-link">{{ $t('footer.pricing') }}</NuxtLinkLocale></li>
-            <li><NuxtLinkLocale to="/api-docs" class="footer-link">{{ $t('footer.apiDocs') }}</NuxtLinkLocale></li>
           </ul>
         </div>
 
         <div>
           <h4 class="font-bold text-[#0e5e6f] text-lg mb-5">{{ $t('footer.support') }}</h4>
           <ul class="space-y-3 text-sm font-medium text-gray-600">
+            <li><NuxtLinkLocale to="/" class="footer-link">{{ $t('footer.home') }}</NuxtLinkLocale></li>
             <li><NuxtLinkLocale to="/contact-us" class="footer-link">{{ $t('footer.contactUs') }}</NuxtLinkLocale></li>
             <li><NuxtLinkLocale to="/about-us" class="footer-link">{{ $t('footer.aboutUs') }}</NuxtLinkLocale></li>
             <li><NuxtLinkLocale to="/privacy-policy" class="footer-link">{{ $t('footer.privacy') }}</NuxtLinkLocale></li>
             <li><NuxtLinkLocale to="/terms-conditions" class="footer-link">{{ $t('footer.terms') }}</NuxtLinkLocale></li>
+            <li><NuxtLinkLocale to="/faq" class="footer-link">{{ $t('footer.faq') }}</NuxtLinkLocale></li>
           </ul>
         </div>
       </div>
@@ -77,9 +81,8 @@
             © {{ new Date().getFullYear() }} 4Pincode. {{ $t('footer.rights') }}
           </p>
           <div class="flex items-center gap-3 opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
-              <i class="ri-bit-coin-line text-2xl"></i>
-              <i class="ri-coin-line text-2xl"></i> <!-- USDT alternative icon -->
-              <i class="ri-paypal-line text-2xl"></i>
+              <i class="ri-coin-line text-2xl" title="USDT"></i> 
+              <i class="ri-paypal-line text-2xl" title="PayPal"></i>
           </div>
         </div>
       </div>
@@ -101,6 +104,6 @@
 }
 
 .social-icon:hover {
-  @apply bg-[#0e5e6f] text-white border-[#0e5e6f] -translate-y-1 shadow-md;
+  @apply bg-[#25D366] text-white border-[#25D366] -translate-y-1 shadow-md; /* Changed hover color to WhatsApp Green */
 }
 </style>

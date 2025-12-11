@@ -1,41 +1,47 @@
 <template>
   <div class="space-y-12">
-    <section class="relative overflow-hidden rounded-2xl bg-gray-100 shadow-sm">
-      <div class="relative h-[280px] sm:h-[340px]">
-        <NuxtImg
-          src="/img/4884273.jpg"
-          class="w-full h-full object-cover"
-          format="webp"
-          alt="Kia / Hyundai VIN to PIN"
-        />
-        <div class="absolute inset-0 bg-gradient-to-r from-[#0e5e6f]/80 via-black/40 to-transparent" />
+    <section class="relative overflow-hidden rounded-2xl bg-gray-900 shadow-sm min-h-[500px] sm:min-h-[400px]">
+      <NuxtImg
+        src="/img/4884273.jpg"
+        class="absolute inset-0 w-full h-full object-cover opacity-60"
+        format="webp"
+        alt="Kia / Hyundai VIN to PIN"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0e5e6f]/90 via-[#0e5e6f]/40 to-transparent" />
 
-        <div class="absolute inset-0 flex items-center">
-          <div class="px-6 sm:px-12 w-full">
-            <div class="max-w-xl bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-white/50">
-              <h1 class="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-900 tracking-tight">
-                {{ $t('hero.headline') || 'Why choose our PIN Code platform?' }}
-              </h1>
-              <ul class="text-sm sm:text-base text-gray-700 space-y-2 mb-6 font-medium">
-                <li class="flex items-center gap-2">
-                  <span class="text-[#3adbc4]">✔</span> {{ $t('hero.points.instant') || 'Instant calculation 24/7' }}
-                </li>
-                <li class="flex items-center gap-2">
-                  <span class="text-[#3adbc4]">✔</span> {{ $t('hero.points.noRenewal') || 'No renewal fees · tokens never expire' }}
-                </li>
-                <li class="flex items-center gap-2">
-                  <span class="text-[#3adbc4]">✔</span> {{ $t('hero.points.easy') || 'Easy to Use' }}
-                </li>
-              </ul>
-              <div class="flex flex-wrap gap-3">
-                <NuxtLinkLocale to="/new-lookup" class="btn-brand">
-                  {{ $t('btn.newLookup') || 'New VIN Lookup' }}
-                </NuxtLinkLocale>
-                <NuxtLinkLocale to="/buy" class="btn-brand-ghost">
-                  {{ $t('btn.buyTokens') || 'Buy Tokens' }}
-                </NuxtLinkLocale>
-              </div>
-            </div>
+      <div class="relative z-10 flex items-center h-full py-12 px-6 sm:px-12">
+        <div class="max-w-2xl w-full">
+          <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-xl border border-white/50">
+            <h1 class="text-2xl sm:text-4xl font-extrabold mb-6 text-gray-900 tracking-tight leading-tight">
+              {{ $t('hero.headline') || 'Why choose our PIN Code platform?' }}
+            </h1>
+            
+            <ul class="text-sm sm:text-base text-gray-700 space-y-3 font-medium">
+              <li class="flex items-start gap-3">
+                <span class="text-[#3adbc4] text-lg mt-0.5">✔</span> 
+                <span>{{ $t('hero.points.instant') }}</span>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <span class="text-[#3adbc4] text-lg mt-0.5">✔</span>
+                <span>{{ $t('hero.points.noRenewal') }}</span>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <span class="text-[#3adbc4] text-lg mt-0.5">✔</span>
+                <span>{{ $t('hero.points.easy') }}</span>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <span class="text-[#3adbc4] text-lg mt-0.5">✔</span>
+                <span>{{ $t('hero.points.toyota') }}</span>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <span class="text-[#3adbc4] text-lg mt-0.5">✔</span>
+                <span>{{ $t('hero.points.chinese') }}</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -50,8 +56,8 @@
       </div>
 
       <div class="relative group w-full overflow-hidden bg-white py-4">
-        <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-        <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
         <div class="flex w-max animate-marquee hover:[animation-play-state:paused]">
           <div class="flex gap-8 px-4">
@@ -68,7 +74,6 @@
               </span>
             </div>
           </div>
-
           <div class="flex gap-8 px-4">
             <div v-for="b in brands" :key="'set2-' + b.key" class="brand-pill group hover:border-[#3adbc4]/50 transition-colors duration-300">
               <NuxtImg
@@ -95,116 +100,91 @@
         <div class="h-1 w-20 bg-gradient-to-r from-[#0e5e6f] to-[#3adbc4] mx-auto mt-2 rounded-full"></div>
       </div>
 
-      <div class="relative group/slider">
-        <button 
-          @click="scrollPacks('left')" 
-          class="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/90 shadow-md border border-gray-100 text-gray-600 hover:text-[#0e5e6f] hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 sm:opacity-100"
-          aria-label="Scroll left"
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto px-4 sm:px-0">
+        <article
+          v-for="p in allPacks"
+          :key="p.id"
+          class="pack-card flex flex-col relative group w-full"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-          </svg>
-        </button>
+          <NuxtLinkLocale
+            :to="`/product/${p.slug || p.id}`"
+            class="absolute inset-0 z-0"
+            :aria-label="`Open ${p.name}`"
+          />
 
-        <button 
-          @click="scrollPacks('right')" 
-          class="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/90 shadow-md border border-gray-100 text-gray-600 hover:text-[#0e5e6f] hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 sm:opacity-100"
-          aria-label="Scroll right"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-          </svg>
-        </button>
-
-        <div 
-          ref="packsRail" 
-          class="flex overflow-x-auto snap-x gap-4 pb-4 px-4 sm:grid sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto scrollbar-hide"
-        >
-          <article
-            v-for="p in allPacks"
-            :key="p.id"
-            class="pack-card flex flex-col relative group shrink-0 min-w-[260px] sm:min-w-0 snap-center"
-          >
+          <header class="pack-card__header z-10 flex items-center justify-center min-h-[56px]">
             <NuxtLinkLocale
               :to="`/product/${p.slug || p.id}`"
-              class="absolute inset-0 z-0"
-              :aria-label="`Open ${p.name}`"
-            />
+              class="block z-20 relative text-center w-full"
+              @click.stop
+            >
+              <h4 class="text-base font-bold tracking-tight text-white leading-snug group-hover:text-[#3adbc4] transition-colors">
+                {{ p.name }}
+              </h4>
+            </NuxtLinkLocale>
+          </header>
 
-            <header class="pack-card__header z-10 flex items-center justify-center min-h-[56px]">
-              <NuxtLinkLocale
-                :to="`/product/${p.slug || p.id}`"
-                class="block z-20 relative text-center w-full"
-                @click.stop
-              >
-                <h4 class="text-sm sm:text-base font-bold tracking-tight text-white leading-snug group-hover:text-[#3adbc4] transition-colors">
-                  {{ p.name }}
-                </h4>
-              </NuxtLinkLocale>
-            </header>
+          <div class="pack-card__body flex-1 flex flex-col z-10 bg-white">
+            <div class="text-center mt-2">
+              <span class="inline-block bg-gray-100 text-[#0e5e6f] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                {{ p.tokens }} {{ $t('tokens') || 'TOKENS' }}
+              </span>
+            </div>
 
-            <div class="pack-card__body flex-1 flex flex-col z-10 bg-white">
-              <div class="text-center mt-2">
-                <span class="inline-block bg-gray-100 text-[#0e5e6f] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
-                  {{ p.tokens }} {{ $t('tokens') || 'TOKENS' }}
-                </span>
-              </div>
+            <NuxtLink
+              v-if="p.image_url"
+              :to="`/product/${p.slug || p.id}`"
+              class="block z-20 relative mx-auto w-full px-4 py-4"
+              @click.stop
+            >
+              <NuxtImg
+                :src="p.image_url"
+                format="webp"
+                class="pack-image h-48 sm:h-56 w-full object-contain mx-auto transition-transform duration-300 group-hover:scale-105 border border-gray-100 bg-white rounded-xl"
+                :modifiers="{ fit: 'contain', background: 'white' }"
+                alt=""
+              />
+            </NuxtLink>
 
-              <NuxtLink
-                v-if="p.image_url"
-                :to="`/product/${p.slug || p.id}`"
-                class="block z-20 relative mx-auto w-full px-4 py-4"
-                @click.stop
-              >
-                <NuxtImg
-                  :src="p.image_url"
-                  format="webp"
-                  class="pack-image h-48 sm:h-56 w-full object-contain mx-auto transition-transform duration-300 group-hover:scale-105 border border-gray-100 bg-white rounded-xl"
-                  :modifiers="{ fit: 'contain', background: 'white' }"
-                  alt=""
-                />
-              </NuxtLink>
+            <p v-if="p.sku" class="text-gray-400 text-center font-medium text-[10px] tracking-wider uppercase mb-2">
+              SKU: {{ p.sku }}
+            </p>
 
-              <p v-if="p.sku" class="text-gray-400 text-center font-medium text-[10px] tracking-wider uppercase mb-2">
-                SKU: {{ p.sku }}
-              </p>
-
-              <div class="text-center mb-4">
-                <template v-if="currentStrikePrice(p, qty[p.id])">
-                  <div class="text-xl sm:text-2xl font-black text-gray-900 leading-none">
-                    ${{ currentUnitPrice(p, qty[p.id]).toFixed(2) }}
-                  </div>
-                  <div class="text-xs text-[#e63946] line-through mt-1 font-semibold">
-                    ${{ currentStrikePrice(p, qty[p.id])!.toFixed(2) }}
-                  </div>
-                </template>
-                <template v-else>
-                  <div class="text-xl sm:text-2xl font-black text-[#0e5e6f] leading-none">
-                    ${{ currentUnitPrice(p, qty[p.id]).toFixed(2) }}
-                  </div>
-                </template>
-              </div>
-
-              <div class="mt-auto pt-4 border-t border-gray-100" @click.stop>
-                <div class="flex items-center gap-3">
-                  <input
-                    v-model.number="qty[p.id]"
-                    type="number"
-                    min="1"
-                    class="w-14 rounded-xl border border-gray-200 bg-gray-50 px-1 py-2 text-center text-sm font-bold focus:ring-2 focus:ring-[#3adbc4] focus:border-[#3adbc4] outline-none transition-all"
-                    @click.stop
-                  />
-                  <button
-                    class="btn-brand w-full text-sm py-2.5"
-                    @click.stop="addToCartCard(p)"
-                  >
-                    {{ $t('btn.addToCart') || 'Add to Cart' }}
-                  </button>
+            <div class="text-center mb-4">
+              <template v-if="currentStrikePrice(p, qty[p.id])">
+                <div class="text-2xl font-black text-gray-900 leading-none">
+                  ${{ currentUnitPrice(p, qty[p.id]).toFixed(2) }}
                 </div>
+                <div class="text-xs text-[#e63946] line-through mt-1 font-semibold">
+                  ${{ currentStrikePrice(p, qty[p.id])!.toFixed(2) }}
+                </div>
+              </template>
+              <template v-else>
+                <div class="text-2xl font-black text-[#0e5e6f] leading-none">
+                  ${{ currentUnitPrice(p, qty[p.id]).toFixed(2) }}
+                </div>
+              </template>
+            </div>
+
+            <div class="mt-auto pt-4 border-t border-gray-100" @click.stop>
+              <div class="flex items-center gap-3">
+                <input
+                  v-model.number="qty[p.id]"
+                  type="number"
+                  min="1"
+                  class="w-14 rounded-xl border border-gray-200 bg-gray-50 px-1 py-2 text-center text-sm font-bold focus:ring-2 focus:ring-[#3adbc4] focus:border-[#3adbc4] outline-none transition-all"
+                  @click.stop
+                />
+                <button
+                  class="btn-brand w-full text-sm py-2.5"
+                  @click.stop="addToCartCard(p)"
+                >
+                  {{ $t('btn.addToCart') || 'Add to Cart' }}
+                </button>
               </div>
             </div>
-          </article>
-        </div>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -241,7 +221,6 @@ const { locale, t } = useI18n()
 const cart = useCart()
 const { show } = useAddedToast()
 const qty = reactive<Record<number, number>>({})
-const packsRail = ref<HTMLDivElement | null>(null)
 
 function normalizedTiers(p: TokenPack): PricingTier[] {
   return (p.pricing_tiers || [])
@@ -327,7 +306,7 @@ const errorMsg = computed(() => {
   return e?.statusMessage || e?.message || ''
 })
 
-// Corrected unique keys for brands to prevent Vue errors
+// Brands list
 const brands = [
   { key: 'kia', name: 'KIA', logo: '/img/brands/kia.svg' },
   { key: 'hyundai', name: 'HYUNDAI', logo: '/img/brands/hyundai.svg' },
@@ -338,17 +317,6 @@ const brands = [
   { key: 'chery', name: 'Chery', logo: '/img/brands/chery.svg' },
   { key: 'haval', name: 'Haval', logo: '/img/brands/haval.webp' },
 ]
-
-function scrollPacks(direction: 'left' | 'right') {
-  if (packsRail.value) {
-    // Scroll by the width of one card (~280px)
-    const scrollAmount = 280;
-    packsRail.value.scrollBy({
-      left: direction === 'left' ? -scrollAmount : scrollAmount,
-      behavior: 'smooth'
-    });
-  }
-}
 
 useHead({
   title: t('seo.title') || 'Immobilizer PIN Code Calculator',
@@ -381,14 +349,6 @@ useHead({
   @apply scale-95 opacity-100 translate-y-0;
 }
 
-.btn-brand-ghost {
-  @apply inline-flex items-center justify-center rounded-xl bg-white border border-[#0e5e6f]/30 text-[#0e5e6f] px-5 py-2.5 font-bold shadow-sm transition-all duration-200;
-}
-.btn-brand-ghost:hover {
-  @apply bg-[#0e5e6f]/5 border-[#0e5e6f] text-[#0e5e6f];
-}
-
-/* --- BRANDS --- */
 .brand-pill {
   @apply flex items-center justify-center h-16 min-w-[160px] px-6 bg-white border border-gray-100 rounded-2xl shadow-sm transition-all;
 }
@@ -407,14 +367,5 @@ useHead({
 
 .pack-card__body {
   @apply px-4 py-4 gap-2;
-}
-
-/* Scrollbar Hide */
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
-}
-.scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 </style>
