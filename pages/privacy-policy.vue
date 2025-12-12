@@ -37,10 +37,14 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRuntimeConfig, useHead } from '#imports'
+
 const { t, locale } = useI18n()
 const config = useRuntimeConfig()
 
-const siteUrl = config.public.siteUrl || 'https://pin-code.com'
+const siteUrl = config.public.siteUrl || 'https://4pincode.com'
 const pageUrl = computed(() => {
   const prefix = locale.value === 'en' ? '' : `${locale.value}/`
   return `${siteUrl}/${prefix}privacy-policy`
@@ -74,13 +78,9 @@ useHead({
   ],
   script: [
     {
-      id: 'privacy-jsonld',
       type: 'application/ld+json',
-      innerHTML: JSON.stringify(privacySchema.value)
+      children: JSON.stringify(privacySchema.value)
     }
-  ],
-  __dangerouslyDisableSanitizersByTagID: {
-    'privacy-jsonld': ['innerHTML']
-  }
+  ]
 })
 </script>

@@ -10,7 +10,6 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Contact Form -->
       <div class="bg-white rounded-2xl shadow-sm border p-6">
         <h2 class="text-xl font-semibold mb-4">
           {{ $t('pages.contact.form.title') }}
@@ -83,7 +82,6 @@
         </form>
       </div>
 
-      <!-- Contact Info -->
       <div class="bg-white rounded-2xl shadow-sm border p-6 space-y-5">
         <h2 class="text-xl font-semibold">
           {{ $t('pages.contact.info.title') }}
@@ -123,7 +121,9 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRuntimeConfig, useHead } from '#imports'
 
 const { t, locale } = useI18n()
 const config = useRuntimeConfig()
@@ -147,7 +147,7 @@ async function submit() {
   loading.value = false
 }
 
-const siteUrl = config.public.siteUrl || 'https://pin-code.com'
+const siteUrl = config.public.siteUrl || 'https://4pincode.com'
 const pageUrl = computed(() => {
   const prefix = locale.value === 'en' ? '' : `${locale.value}/`
   return `${siteUrl}/${prefix}contact-us`
@@ -183,13 +183,9 @@ useHead({
   ],
   script: [
     {
-      id: 'contact-jsonld',
       type: 'application/ld+json',
-      innerHTML: JSON.stringify(contactSchema.value)
+      children: JSON.stringify(contactSchema.value)
     }
-  ],
-  __dangerouslyDisableSanitizersByTagID: {
-    'contact-jsonld': ['innerHTML']
-  }
+  ]
 })
 </script>

@@ -1,49 +1,82 @@
 {
-  "nav.kiaBefore2017": "Kia / Hyundai (old)",
-  "nav.kiaAfter2017": "Kia / Hyundai (New)",
-  "nav.categories": "Categories",
-  "nav.lookups": "My Lookups",
-  "hero.badge": "IMMOBILIZER PINCODE CALCULATOR",
-  "hero.headline": "Why choose our PIN Code platform?",
-  "hero.points.easy": "Easy to Use",
-  "hero.points.updates": "Lifetime Free Updates",
-  "hero.points.free": "Access to Free Services",
-  "hero.points.noRenewal": "No renewal fees · tokens never expire",
-  
-  "hero.points.instant": "Instant calculation 24/7 (Kia / Hyundai)",
-  "hero.points.toyota": "Toyota / Lexus Passcode",
-  "hero.points.chinese": "Chinese Cars Pincode (MG - Changan - Chery - Haval)",
-
-  "btn.newLookup": "New VIN Lookup",
-  "btn.buyTokens": "Buy Tokens",
-  "section.offers.title": "Special Offers",
-  "section.offers.subtitle": "Extra discounts and free gifts",
-  "section.calcs.title": "Calculators",
-  "section.calcs.subtitle": "Popular services",
-  "section.calcs.browseAll": "Browse all calculators",
-  "section.tokens.title": "Tokens",
-  "section.tokens.subtitle": "Why tokens?",
-  "tokens.bullets.1": "Some advanced services require tokens (e.g., VIN→PIN for certain brands).",
-  "tokens.bullets.2": "No dongles or drivers required.",
-  "tokens.bullets.3": "Instant delivery by email after payment.",
-  "tokens.bullets.4": "No renewal fees. Tokens never expire.",
-  "tokens.bestValue": "Best value",
-  "tokens.buyNow": "Buy Now",
-  "seo": {
-      "title": "VIN to PIN Calculator | Immobilizer Pincodes & Key Programming",
-      "desc": "Instant VIN to Pin / Vin to Pincode lookup for Kia, Hyundai, Toyota, and Chinese cars. Professional immobilizer calculator for locksmiths. Fast results with no subscription fees."
+  "nav": {
+    "kiaBefore2017": "Kia / Hyundai (old)",
+    "kiaAfter2017": "Kia / Hyundai (New)",
+    "categories": "Categories",
+    "lookups": "My Lookups",
+    "tokens": "Tokens",
+    "calculators": "Calculators",
+    "openMenu": "Open menu",
+    "kia_before": "Kia / Hyundai VIN to PIN (before 2017)",
+    "kia_after": "Kia / Hyundai VIN to PIN (2017 and after)",
+    "account": "Account",
+    "buyKiaOld": "Old Kia / Hyundai Tokens",
+    "buyKiaNew": "New Kia / Hyundai Tokens",
+    "buyToyota": "Toyota / Lexus Passcode",
+    "buyChinese": "Chinese Cars Pincode",
+    "calcKiaOld": "Old Kia / Hyundai Calculator",
+    "calcKiaNew": "New Kia / Hyundai Calculator"
+  },
+  "hero": {
+    "badge": "IMMOBILIZER PINCODE CALCULATOR",
+    "headline": "Why choose our PIN Code platform?",
+    "points": {
+      "easy": "Easy to Use",
+      "updates": "Lifetime Free Updates",
+      "free": "Access to Free Services",
+      "noRenewal": "No renewal fees · tokens never expire",
+      "instant": "Instant calculation 24/7 (Kia / Hyundai)",
+      "toyota": "Toyota / Lexus Passcode",
+      "chinese": "Chinese Cars Pincode (MG - Changan - Chery - Haval)"
+    }
+  },
+  "btn": {
+    "newLookup": "New VIN Lookup",
+    "buyTokens": "Buy Tokens",
+    "buyNow": "Buy Now",
+    "whatsappProof": "Whatsapp Proof",
+    "orderWhatsApp": "Order On Whatsapp",
+    "addToCart": "Add To Cart"
+  },
+  "section": {
+    "offers": {
+      "title": "Special Offers",
+      "subtitle": "Extra discounts and free gifts"
     },
+    "calcs": {
+      "title": "Calculators",
+      "subtitle": "Popular services",
+      "browseAll": "Browse all calculators"
+    },
+    "tokens": {
+      "title": "Tokens",
+      "subtitle": "Why tokens?"
+    }
+  },
+  "tokens": {
+    "bullets": {
+      "1": "Some advanced services require tokens (e.g., VIN→PIN for certain brands).",
+      "2": "No dongles or drivers required.",
+      "3": "Instant delivery by email after payment.",
+      "4": "No renewal fees. Tokens never expire."
+    },
+    "bestValue": "Best value",
+    "buyNow": "Buy Now"
+  },
+  "seo": {
+    "title": "VIN to PIN Calculator | Immobilizer Pincodes & Key Programming",
+    "desc": "Instant VIN to Pin / Vin to Pincode lookup for Kia, Hyundai, Toyota, and Chinese cars. Professional immobilizer calculator for locksmiths. Fast results with no subscription fees."
+  },
   "home": {
     "categories": "Categories",
     "tokenPacks": "Token Packs",
-    "supportedBrands" : "Supported Brands"
+    "supportedBrands": "Supported Brands"
   },
-
   "common": {
     "returnHome": "Return to Home",
     "required_info": "Required Inputs",
-    "price" : "Price",
-    "quantity" : "Quantity",
+    "price": "Price",
+    "quantity": "Quantity",
     "save": "Save",
     "cancel": "Cancel",
     "phone": "Phone Number",
@@ -72,7 +105,6 @@
     "copied": "Copied",
     "contact_whatsapp": "Contact us on WhatsApp"
   },
-
   "product": {
     "category": "Category",
     "related": "Related Products",
@@ -80,24 +112,6 @@
     "details": "Product details",
     "sku": "SKU"
   },
-
-  "nav": {
-    "tokens" : "Tokens",
-      "calculators" : "Calculators",
-      "categories": "Categories",
-      "lookups": "My Lookups",
-      "openMenu": "Open menu",
-      "kia_before": "Kia / Hyundai VIN to PIN (before 2017)",
-      "kia_after": "Kia / Hyundai VIN to PIN (2017 and after)",
-      "account": "Account",
-      "buyKiaOld": "Old Kia / Hyundai Tokens",
-      "buyKiaNew": "New Kia / Hyundai Tokens",
-      "buyToyota": "Toyota / Lexus Passcode",
-      "buyChinese": "Chinese Cars Pincode",
-      "calcKiaOld": "Old Kia / Hyundai Calculator",
-      "calcKiaNew": "New Kia / Hyundai Calculator"
-  },
-
   "cart": {
     "loginToCheckout": "Login to checkout",
     "loginToCheckoutHint": "You need to login to complete your purchase.",
@@ -132,7 +146,6 @@
     "checkout": "Proceed to Checkout",
     "loginSave": "Have an account? Log in so we can save your cart."
   },
-
   "checkout": {
     "copy": "Copy",
     "copied": "Copied",
@@ -174,15 +187,12 @@
     "successPaypal": "Your PayPal invoice has been created. Please check your email to complete the payment.",
     "successUsdt": "Your order has been created. Please send the USDT transfer and WhatsApp us the proof of payment.",
     "successTransfer": "Your order has been created. Please complete the international transfer. We will contact you with the details.",
-    "acceptTermsPre" : "I accept the terms and conditions",
-    "acceptTermsLink" : "Terms & Conditions"
+    "acceptTermsPre": "I accept the terms and conditions",
+    "acceptTermsLink": "Terms & Conditions"
   },
-
-  "tokens": "tokens",
-
   "auth": {
     "welcome": "Welcome",
-    "logout" : "Logout",
+    "logout": "Logout",
     "account": "Your Account",
     "login": "Login",
     "register": "Register",
@@ -196,9 +206,8 @@
     "passwordsNotMatch": "Passwords do not match",
     "hello": "Hello {name}",
     "helloShort": "Hello {name}",
-    "signedInAs" : "Signed in as"
+    "signedInAs": "Signed in as"
   },
-
   "shop": {
     "title": "Shop",
     "all": "All",
@@ -207,7 +216,6 @@
     "tokens": "tokens",
     "pageOf": "Page {cur} of {total}"
   },
-
   "account": {
     "title": "My account",
     "tabs": {
@@ -252,7 +260,6 @@
       "vin": "VIN"
     }
   },
-
   "service": {
     "title": "Service",
     "walletTokens": "Available Tokens",
@@ -269,8 +276,6 @@
     "resultTitle": "Decoded Result",
     "vin_size": "VIN must be exactly 17 Characters"
   },
-  
-
   "services": {
     "kiaBeforeTitle": "Old Kia / Hyundai (before 2017)",
     "kiaAfterTitle": "Kia / Hyundai (2017 and after)"
@@ -288,7 +293,7 @@
         "name": "Full name",
         "name_ph": "Your name",
         "email": "Email address",
-        "email_ph": "you@example.com",
+        "email_ph": "you{'@'}example.com",
         "subject": "Subject",
         "subject_ph": "What is this about?",
         "message": "Message",
@@ -306,7 +311,6 @@
         "note": "For urgent VIN jobs, WhatsApp is the fastest way to reach us."
       }
     },
-
     "about": {
       "title": "About Us",
       "subtitle": "Professional VIN to PIN services for Kia & Hyundai locksmiths worldwide.",
@@ -333,7 +337,6 @@
         }
       }
     },
-
     "privacy": {
       "title": "Privacy Policy",
       "subtitle": "Your data matters. Here is how we collect and protect it.",
@@ -360,7 +363,7 @@
         },
         "s5": {
           "title": "5. Contact",
-          "body": "If you have any questions about privacy, contact us at support@pin-code.com."
+          "body": "If you have any questions about privacy, contact us at support{'@'}pin-code.com."
         }
       }
     },
@@ -386,7 +389,7 @@
         },
         "s4": {
           "title": "4. Refund Policy",
-          "body": "Because results are digital and delivered immediately, refunds are only considered for proven system errors."
+          "body": "Because results are digital and delivered immediately, refunds are only considered for verified system errors."
         },
         "s5": {
           "title": "5. Support & Updates",
@@ -394,7 +397,7 @@
         }
       }
     },
-      "faq": {
+    "faq": {
       "contactSupport": "Contact Support",
       "title": "FAQ",
       "subtitle": "Answers to the most common questions about Kia / Hyundai PIN services.",
@@ -442,37 +445,29 @@
       }
     }
   },
-  "msg" :{
-      "fillRequired" : "Fill Required"
-    },
-    "btn" :{
-      "whatsappProof" : "Whatsapp Proof",
-      "buyNow": "Buy Now",
-      "orderWhatsApp" : "Order On Whatsapp",
-          "buyTokens": "Buy Tokens",
-          "addToCart": "Add To Cart"
-    },
-
+  "msg": {
+    "fillRequired": "Fill Required"
+  },
   "footer": {
-      "questions": "Got questions? Call or WhatsApp us",
-      "contactInfo": "Contact Info",
-      "companyName": "4Pincode Services",
-      "location": "Sharjah – United Arab Emirates",
-      "products": "Products",
-      "calculators": "Calculators",
-      "support": "Support",
-      "home": "Home",
-      "kiaOld": "Kia / Hyundai (Old)",
-      "kiaNew": "Kia / Hyundai (New)",
-      "toyota": "Toyota / Lexus Passcode",
-      "chineseCars": "Chinese Cars PIN Code",
-      "contactUs": "Contact Us",
-      "aboutUs": "About Us",
-      "privacy": "Privacy Policy",
-      "terms": "Terms & Conditions",
-      "faq": "FAQ",
-      "rights": "All Rights Reserved."
-    },
+    "questions": "Got questions? Call or WhatsApp us",
+    "contactInfo": "Contact Info",
+    "companyName": "4Pincode Services",
+    "location": "Sharjah – United Arab Emirates",
+    "products": "Products",
+    "calculators": "Calculators",
+    "support": "Support",
+    "home": "Home",
+    "kiaOld": "Kia / Hyundai (Old)",
+    "kiaNew": "Kia / Hyundai (New)",
+    "toyota": "Toyota / Lexus Passcode",
+    "chineseCars": "Chinese Cars PIN Code",
+    "contactUs": "Contact Us",
+    "aboutUs": "About Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "faq": "FAQ",
+    "rights": "All Rights Reserved."
+  },
   "success": {
     "title": "Order Placed Successfully!",
     "orderRef": "Your order reference is:",
@@ -482,5 +477,4 @@
     "transferTitle": "Bank / Western Union Transfer",
     "transferDesc": "We have received your order. Please contact us via WhatsApp to receive the banking details to complete your payment."
   }
-
 }
