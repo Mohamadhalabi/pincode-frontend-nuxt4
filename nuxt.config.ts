@@ -7,17 +7,19 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-11-05',
   devServer: { host: '127.0.0.1', port: 3000 },
   ssr: true,
-    sourcemap: {      // <--- Add this block
-        server: false,
-        client: false
-      },
-    
-      vite: {           // <--- Add this block
-        build: {
-          sourcemap: false,
-          cssCodeSplit: false // Optional: helps reduce memory usage further
-        }
-      },
+  
+  sourcemap: {
+    server: false,
+    client: false
+  },
+
+  vite: {
+    build: {
+      sourcemap: false,
+      cssCodeSplit: false
+    }
+  },
+
   modules: [
     '@pinia/nuxt',
     '@nuxt/image',
@@ -29,8 +31,6 @@ export default defineNuxtConfig({
   ],
 
   // ✅ 1. GLOBAL SITE CONFIG
-  // We hardcode the production URL here to ensure Canonical/Hreflang 
-  // are generated correctly even when you are testing on Localhost.
   site: {
     url: 'https://www.4pincode.com',
     name: '4PinCode',
@@ -47,14 +47,13 @@ export default defineNuxtConfig({
     domains: ['pincode-backend.tlkeys.com'],
   },
 
-  // ✅ 2. I18N CONFIG (Fixes Hreflangs)
-i18n: {
-    baseUrl: 'https://www.4pincode.com', 
+  // ✅ 2. I18N CONFIG
+  i18n: {
+    baseUrl: 'https://www.4pincode.com',
     vueI18n: vueI18nConfigPath,
     locales: [
-      // CHANGE 'iso' to match the simple code if you want hreflang="en"
       { code: 'en', iso: 'en', name: 'English', dir: 'ltr' },
-      { code: 'ar', iso: 'ar', name: 'العربية', dir: 'rtl' } 
+      { code: 'ar', iso: 'ar', name: 'العربية', dir: 'rtl' }
     ],
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
@@ -63,66 +62,72 @@ i18n: {
       cookieKey: 'i18n_redirected',
       redirectOn: 'root'
     },
-    // This tells the module: "You handle the SEO tags, I won't do it manually"
     bundle: { optimizeTranslationDirective: false }
   },
 
-  // ✅ 3. ROBOTS CONFIG (Fixes Indexing)
+  // ✅ 3. ROBOTS CONFIG
   robots: {
-    // This forces the module to generate "index, follow" rules
-    // Note: Localhost might still show 'noindex' in headers as a safety feature,
-    // but this config ensures Production is correct.
     indexable: true,
-    disallow: [] 
+    disallow: []
   },
 
   // ✅ 4. SITEMAP
   sitemap: {
-    xsl: false, 
+    xsl: false,
   },
 
   nitro: {
     routeRules: {
-      // This tells the server to fetch these routes from the local app itself if needed
-      '/api/**': { proxy: 'http://localhost:3001/api/**' } 
+      '/api/**': { proxy: 'http://localhost:3001/api/**' }
     }
   },
 
-  // ✅ 5. HEAD & FAVICONS
+  // ✅ 5. HEAD, ANALYTICS & SEO
   app: {
     head: {
       titleTemplate: '%s - 4PinCode',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        // REMOVED: { name: 'robots', ... } -> The @nuxtjs/robots module handles this now.
-        // Keeping it here caused the conflict/duplicates.
-        
-        // Android / PWA theme color
-        { name: 'theme-color', content: '#ffffff' }
+        { name: 'theme-color', content: '#ffffff' },
+
+        // --- GOOGLE SEARCH CONSOLE VERIFICATION ---
+        // Paste your verification code inside content=""
+        { name: 'google-site-verification', content: '9b2lCKOdEzfiqnIq7JkYXMxAIS0KG2JgfON_Nxcqvhk' }
       ],
       link: [
-        // Standard Favicon
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
         { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
-        
-        // Apple Touch Icon
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-        
-        // Manifest
         { rel: 'manifest', href: '/site.webmanifest' }
       ],
       script: [
+        // --- GOOGLE ANALYTICS (GA4) START ---
+        {
+          src: 'https://www.googletagmanager.com/gtag/js?id=G-ECRYKVGBBM', // REPLACE G-XXXXXXXXXX
+          async: true
+        },
+        {
+          children: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-ECRYKVGBBM'); // REPLACE G-XXXXXXXXXX
+          `
+        },
+        // --- GOOGLE ANALYTICS END ---
+
+        // --- STRUCTURED DATA (Safe Method using 'children') ---
         {
           id: 'org-jsonld',
           type: 'application/ld+json',
-          innerHTML: JSON.stringify({
+          children: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "4PinCode",
-            "url": "https://4pincode.com",
-            "logo": "https://4pincode.com/android-chrome-512x512.png", // Updated to use your larger icon
+            "url": "https://www.4pincode.com",
+            "logo": "https://www.4pincode.com/android-chrome-512x512.png",
             "email": "support@4pincode.com",
             "telephone": "+447414902439",
             "sameAs": [
@@ -142,7 +147,7 @@ i18n: {
         {
           id: 'website-jsonld',
           type: 'application/ld+json',
-          innerHTML: JSON.stringify({
+          children: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "4PinCode",
@@ -154,11 +159,9 @@ i18n: {
             }
           })
         }
-      ],
-      __dangerouslyDisableSanitizersByTagID: {
-        'org-jsonld': ['innerHTML'],
-        'website-jsonld': ['innerHTML']
-      }
+      ]
+      // NOTE: __dangerouslyDisableSanitizersByTagID REMOVED to prevent crashes.
+      // Using 'children' property above handles this safely now.
     }
   },
 
@@ -167,6 +170,7 @@ i18n: {
       apiBase: process.env.API_BASE,
       usdtWallet: process.env.USDT_WALLET || '',
       whatsappNumber: process.env.WHATSAPP_NUMBER || '',
+      // Ensure this matches your actual domain to prevent redirect loops
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://4pincode.com',
       siteName: process.env.NUXT_PUBLIC_SITE_NAME
     }
