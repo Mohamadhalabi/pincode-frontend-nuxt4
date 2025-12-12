@@ -7,7 +7,17 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-11-05',
   devServer: { host: '127.0.0.1', port: 3000 },
   ssr: true,
-
+    sourcemap: {      // <--- Add this block
+        server: false,
+        client: false
+      },
+    
+      vite: {           // <--- Add this block
+        build: {
+          sourcemap: false,
+          cssCodeSplit: false // Optional: helps reduce memory usage further
+        }
+      },
   modules: [
     '@pinia/nuxt',
     '@nuxt/image',
@@ -73,7 +83,8 @@ i18n: {
 
   nitro: {
     routeRules: {
-      '/api/home/**': { swr: 60 }
+      // This tells the server to fetch these routes from the local app itself if needed
+      '/api/**': { proxy: 'http://localhost:3001/api/**' } 
     }
   },
 
